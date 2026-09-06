@@ -1,0 +1,355 @@
+@import "tailwindcss";
+
+/* ============================================================
+   DESIGN TOKENS — Geist / Vercel Design Language
+   Mapped from DESIGN.md
+   ============================================================ */
+
+@theme {
+  /* ── Colors: Brand & Accent ── */
+  --color-ink: #171717;
+  --color-on-primary: #ffffff;
+  --color-body: #4d4d4d;
+  --color-mute: #8f8f8f;
+  --color-faint: #a1a1a1;
+  --color-hairline: #ebebeb;
+  --color-hairline-soft: #f2f2f2;
+  --color-canvas: #fafafa;
+  --color-elevated: #ffffff;
+  --color-link: #0070f3;
+  --color-link-deep: #0761d1;
+  --color-link-soft: #d3e5ff;
+  --color-error: #ee0000;
+  --color-error-deep: #c50000;
+  --color-warning: #f5a623;
+  --color-warning-soft: #ffefcf;
+  --color-warning-deep: #ab570a;
+  --color-violet: #7928ca;
+  --color-violet-soft: #d8ccf1;
+  --color-cyan: #50e3c2;
+  --color-cyan-soft: #aaffec;
+  --color-pink: #ff0080;
+  --color-magenta: #eb367f;
+
+  /* Gradient stops */
+  --color-grad-develop-start: #007cf0;
+  --color-grad-develop-end: #00dfd8;
+  --color-grad-preview-start: #7928ca;
+  --color-grad-preview-end: #ff0080;
+  --color-grad-ship-start: #ff4d4d;
+  --color-grad-ship-end: #f9cb28;
+
+  /* Chart palette */
+  --color-chart-principal: #171717;
+  --color-chart-interest: #0070f3;
+  --color-chart-tax: #7928ca;
+  --color-chart-insurance: #50e3c2;
+  --color-chart-pmi: #eb367f;
+  --color-chart-hoa: #f5a623;
+
+  /* ── Typography ── */
+  --font-sans: "Geist", "Inter", Arial, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── Spacing ── */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 40px;
+  --spacing-3xl: 64px;
+  --spacing-4xl: 96px;
+  --spacing-section: 128px;
+
+  /* ── Border Radius ── */
+  --radius-none: 0px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill-cat: 64px;
+  --radius-pill: 100px;
+  --radius-full: 9999px;
+
+  /* ── Breakpoints ── */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1200px;
+
+  /* ── Shadows ── */
+  --shadow-whisper: 0px 1px 1px rgba(0, 0, 0, 0.04);
+  --shadow-floating: 0px 2px 2px rgba(0, 0, 0, 0.04), 0px 8px 16px -4px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-body);
+  background-color: var(--color-canvas);
+  font-size: 14px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================================
+   COMPONENT CLASSES
+   ============================================================ */
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--color-ink);
+    color: var(--color-on-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    border-radius: var(--radius-pill);
+    padding: 12px 24px;
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    opacity: 0.85;
+  }
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--color-elevated);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 20px;
+    border-radius: var(--radius-pill);
+    padding: 12px 24px;
+    border: 1px solid var(--color-hairline);
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+    text-decoration: none;
+  }
+  .btn-secondary:hover {
+    border-color: var(--color-ink);
+  }
+  .btn-secondary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-sm {
+    font-size: 14px;
+    padding: 8px 14px;
+    border-radius: var(--radius-sm);
+  }
+
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-elevated);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    border-radius: var(--radius-sm);
+    padding: 6px 12px;
+    border: 1px solid var(--color-hairline);
+    cursor: pointer;
+    transition: border-color 0.15s ease;
+    text-decoration: none;
+  }
+  .btn-ghost:hover {
+    border-color: var(--color-mute);
+  }
+
+  /* ── Cards ── */
+  .card {
+    background-color: var(--color-elevated);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+  }
+
+  .card-elevated {
+    background-color: var(--color-elevated);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-floating);
+  }
+
+  /* ── Inputs ── */
+  .input-field {
+    background-color: var(--color-elevated);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 20px;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-sm);
+    padding: 8px 12px;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  .input-field:focus {
+    border-color: var(--color-ink);
+  }
+  .input-field::placeholder {
+    color: var(--color-faint);
+  }
+
+  /* ── Range Slider ── */
+  .range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: var(--color-hairline);
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+  .range-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    cursor: pointer;
+    border: 2px solid var(--color-elevated);
+    box-shadow: var(--shadow-floating);
+    transition: transform 0.15s ease;
+  }
+  .range-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+  }
+  .range-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--color-ink);
+    cursor: pointer;
+    border: 2px solid var(--color-elevated);
+    box-shadow: var(--shadow-floating);
+  }
+
+  /* ── Pill Toggle (Loan Term) ── */
+  .pill-toggle {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--color-hairline-soft);
+    border-radius: var(--radius-pill);
+    padding: 3px;
+    gap: 2px;
+  }
+  .pill-toggle-item {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 20px;
+    padding: 6px 14px;
+    border-radius: var(--radius-pill);
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: var(--color-mute);
+    transition: all 0.2s ease;
+  }
+  .pill-toggle-item.active,
+  .pill-toggle-item:hover {
+    background: var(--color-elevated);
+    color: var(--color-ink);
+    box-shadow: var(--shadow-whisper);
+  }
+
+  /* ── Accordion ── */
+  .accordion-item {
+    border-bottom: 1px solid var(--color-hairline);
+  }
+  .accordion-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    color: var(--color-ink);
+    text-align: left;
+  }
+  .accordion-trigger svg {
+    transition: transform 0.2s ease;
+    color: var(--color-mute);
+    flex-shrink: 0;
+  }
+  .accordion-trigger[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  .accordion-content {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  .accordion-content.open {
+    opacity: 1;
+  }
+  .accordion-body {
+    padding-bottom: 20px;
+    color: var(--color-body);
+    font-size: 14px;
+    line-height: 22px;
+  }
+}
+
+/* ============================================================
+   UTILITY OVERRIDES
+   ============================================================ */
+
+/* Mesh gradient for hero */
+@utility mesh-gradient {
+  background: radial-gradient(ellipse at 20% 50%, rgba(0, 124, 240, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(121, 40, 202, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(255, 0, 128, 0.10) 0%, transparent 50%),
+    radial-gradient(ellipse at 40% 30%, rgba(80, 227, 194, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse at 90% 70%, rgba(249, 203, 40, 0.08) 0%, transparent 50%);
+}
+
+/* Container helper */
+@utility container-main {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}

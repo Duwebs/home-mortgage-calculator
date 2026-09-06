@@ -1,0 +1,107 @@
+---
+// Navbar component — sticky top nav following Geist nav-bar spec
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 border-b border-hairline bg-canvas/80 backdrop-blur-lg"
+>
+  <nav class="container-main flex items-center justify-between h-16" aria-label="Main navigation">
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2 text-ink no-underline" id="nav-logo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M3 10.5L12 3L21 10.5V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9 21V14H15V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="font-semibold text-[15px] tracking-tight hidden sm:inline">
+        MortgageCalc
+      </span>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden md:flex items-center gap-1">
+      <a href="#calculator" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Calculator
+      </a>
+      <a href="#amortization" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Amortization
+      </a>
+      <a href="#extra-payments" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Extra Payments
+      </a>
+      <a href="#learn" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Learn
+      </a>
+    </div>
+
+    <!-- CTA + Mobile Menu -->
+    <div class="flex items-center gap-2">
+      <a href="#calculator" class="btn-primary btn-sm hidden sm:inline-flex">
+        Get Started
+      </a>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden p-2 rounded-sm border border-hairline bg-elevated text-ink"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+      >
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path id="hamburger-icon" d="M3 4.5H15M3 9H15M3 13.5H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path id="close-icon" d="M4.5 4.5L13.5 13.5M4.5 13.5L13.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="hidden"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Panel -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-hairline bg-canvas"
+  >
+    <div class="container-main py-4 flex flex-col gap-1">
+      <a href="#calculator" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Calculator
+      </a>
+      <a href="#amortization" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Amortization
+      </a>
+      <a href="#extra-payments" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Extra Payments
+      </a>
+      <a href="#learn" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        Learn
+      </a>
+      <div class="pt-2 mt-2 border-t border-hairline">
+        <a href="#calculator" class="btn-primary w-full text-center">
+          Get Started
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const hamburger = document.getElementById('hamburger-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  btn?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    btn.setAttribute('aria-expanded', String(isOpen));
+    hamburger?.classList.toggle('hidden', isOpen);
+    closeIcon?.classList.toggle('hidden', !isOpen);
+  });
+
+  // Close on anchor click
+  menu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+      hamburger?.classList.remove('hidden');
+      closeIcon?.classList.add('hidden');
+    });
+  });
+</script>

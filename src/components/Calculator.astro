@@ -1,0 +1,822 @@
+---
+// Calculator component — real-time mortgage calculator with sliders, donut chart, and results
+---
+
+<section id="calculator" class="py-16 sm:py-24 bg-canvas">
+  <div class="container-main">
+    <!-- Section header -->
+    <div class="text-center mb-12">
+      <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-3">Mortgage Calculator</p>
+      <h2 class="text-ink font-semibold text-2xl sm:text-[32px] leading-tight tracking-[-1.28px]">
+        Your Mortgage Payment Details
+      </h2>
+    </div>
+
+    <div class="grid lg:grid-cols-[1fr_1fr] gap-6 items-start">
+      <!-- ═══ LEFT: Inputs ═══ -->
+      <div class="card space-y-5" id="calc-inputs">
+        <!-- Home Price -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="home-price" class="text-sm font-medium text-ink">Home Price</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
+              <input
+                type="text"
+                id="home-price"
+                class="input-field w-36 pl-7 text-right tabular-nums"
+                value="400,000"
+                inputmode="numeric"
+              />
+            </div>
+          </div>
+          <input type="range" id="home-price-slider" class="range-slider" min="50000" max="2000000" step="5000" value="400000" />
+          <div class="flex justify-between text-xs text-faint">
+            <span>$50K</span><span>$2M</span>
+          </div>
+        </div>
+
+        <!-- Down Payment -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="down-payment" class="text-sm font-medium text-ink">Down Payment</label>
+            <div class="flex items-center gap-2">
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
+                <input
+                  type="text"
+                  id="down-payment"
+                  class="input-field w-28 pl-7 text-right tabular-nums"
+                  value="80,000"
+                  inputmode="numeric"
+                />
+              </div>
+              <div class="relative">
+                <input
+                  type="text"
+                  id="down-payment-pct"
+                  class="input-field w-16 text-right tabular-nums pr-7"
+                  value="20"
+                  inputmode="decimal"
+                />
+                <span class="absolute right-3 top-1/2 -translate-y-1/2 text-mute text-sm">%</span>
+              </div>
+            </div>
+          </div>
+          <input type="range" id="down-payment-slider" class="range-slider" min="0" max="100" step="1" value="20" />
+          <div class="flex justify-between text-xs text-faint">
+            <span>0%</span><span>100%</span>
+          </div>
+        </div>
+
+        <!-- Loan Term -->
+        <div class="space-y-2">
+          <label class="text-sm font-medium text-ink block">Loan Term</label>
+          <div class="pill-toggle w-full" id="loan-term-toggle">
+            <button class="pill-toggle-item flex-1" data-value="10">10 yr</button>
+            <button class="pill-toggle-item flex-1" data-value="15">15 yr</button>
+            <button class="pill-toggle-item flex-1" data-value="20">20 yr</button>
+            <button class="pill-toggle-item flex-1" data-value="25">25 yr</button>
+            <button class="pill-toggle-item flex-1 active" data-value="30">30 yr</button>
+          </div>
+        </div>
+
+        <!-- Interest Rate -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <label for="interest-rate" class="text-sm font-medium text-ink">Interest Rate</label>
+            <div class="relative">
+              <input
+                type="text"
+                id="interest-rate"
+                class="input-field w-20 text-right tabular-nums pr-7"
+                value="6.50"
+                inputmode="decimal"
+              />
+              <span class="absolute right-3 top-1/2 -translate-y-1/2 text-mute text-sm">%</span>
+            </div>
+          </div>
+          <input type="range" id="interest-rate-slider" class="range-slider" min="0" max="15" step="0.05" value="6.50" />
+          <div class="flex justify-between text-xs text-faint">
+            <span>0%</span><span>15%</span>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-hairline"></div>
+
+        <!-- Property Tax -->
+        <div class="flex items-center justify-between">
+          <label for="property-tax" class="text-sm font-medium text-ink">Property Tax
+            <span class="text-xs text-mute font-normal ml-1">/ year</span>
+          </label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
+            <input
+              type="text"
+              id="property-tax"
+              class="input-field w-28 pl-7 text-right tabular-nums"
+              value="3,000"
+              inputmode="numeric"
+            />
+          </div>
+        </div>
+
+        <!-- Home Insurance -->
+        <div class="flex items-center justify-between">
+          <label for="home-insurance" class="text-sm font-medium text-ink">Home Insurance
+            <span class="text-xs text-mute font-normal ml-1">/ year</span>
+          </label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
+            <input
+              type="text"
+              id="home-insurance"
+              class="input-field w-28 pl-7 text-right tabular-nums"
+              value="1,500"
+              inputmode="numeric"
+            />
+          </div>
+        </div>
+
+        <!-- PMI -->
+        <div class="flex items-center justify-between">
+          <label for="pmi-rate" class="text-sm font-medium text-ink">PMI
+            <span class="text-xs text-mute font-normal ml-1">(if &lt;20% down)</span>
+          </label>
+          <div class="relative">
+            <input
+              type="text"
+              id="pmi-rate"
+              class="input-field w-20 text-right tabular-nums pr-7"
+              value="0.50"
+              inputmode="decimal"
+            />
+            <span class="absolute right-3 top-1/2 -translate-y-1/2 text-mute text-sm">%</span>
+          </div>
+        </div>
+
+        <!-- HOA -->
+        <div class="flex items-center justify-between">
+          <label for="hoa-fee" class="text-sm font-medium text-ink">Monthly HOA</label>
+          <div class="relative">
+            <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
+            <input
+              type="text"
+              id="hoa-fee"
+              class="input-field w-24 pl-7 text-right tabular-nums"
+              value="0"
+              inputmode="numeric"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══ RIGHT: Results ═══ -->
+      <div class="space-y-6" id="calc-results">
+        <!-- Monthly Payment Card -->
+        <div class="card-elevated text-center py-8">
+          <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-2">Estimated Monthly Payment</p>
+          <p class="text-ink font-semibold text-[clamp(36px,5vw,48px)] leading-none tracking-[-2.4px] tabular-nums" id="monthly-payment">
+            $2,398
+          </p>
+        </div>
+
+        <!-- Donut Chart -->
+        <div class="card">
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <div class="relative w-48 h-48 flex-shrink-0">
+              <svg id="donut-chart" viewBox="0 0 200 200" class="w-full h-full" aria-label="Payment breakdown chart"></svg>
+              <div class="absolute inset-0 flex flex-col items-center justify-center">
+                <span class="text-xs text-mute">P&I</span>
+                <span class="text-lg font-semibold text-ink tabular-nums" id="donut-center-value">$2,023</span>
+              </div>
+            </div>
+            <div class="flex-1 w-full space-y-3" id="breakdown-legend">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Summary Stats -->
+        <div class="grid grid-cols-2 gap-3" id="summary-stats">
+          <div class="card text-center py-4">
+            <p class="text-xs text-mute mb-1">Total Interest</p>
+            <p class="text-ink font-semibold text-lg tabular-nums" id="total-interest">$407,218</p>
+          </div>
+          <div class="card text-center py-4">
+            <p class="text-xs text-mute mb-1">Total Cost</p>
+            <p class="text-ink font-semibold text-lg tabular-nums" id="total-cost">$863,218</p>
+          </div>
+          <div class="card text-center py-4">
+            <p class="text-xs text-mute mb-1">Payoff Date</p>
+            <p class="text-ink font-semibold text-lg" id="payoff-date">Sep 2056</p>
+          </div>
+          <div class="card text-center py-4">
+            <p class="text-xs text-mute mb-1">Loan Amount</p>
+            <p class="text-ink font-semibold text-lg tabular-nums" id="loan-amount-display">$320,000</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ Payment Balance Chart Section ═══ -->
+<section class="py-16 bg-canvas border-t border-hairline">
+  <div class="container-main">
+    <div class="card">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-1">Loan Balance Over Time</p>
+          <h3 class="text-ink font-semibold text-lg tracking-tight">Principal vs Interest</h3>
+        </div>
+        <div class="pill-toggle text-xs" id="chart-view-toggle">
+          <button class="pill-toggle-item active" data-view="balance">Balance</button>
+          <button class="pill-toggle-item" data-view="payments">Payments</button>
+        </div>
+      </div>
+      <div class="relative" style="height: 320px;">
+        <canvas id="balance-chart" class="w-full h-full"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+// MORTGAGE CALCULATOR ENGINE
+// ═══════════════════════════════════════════════════════════════
+
+const state = {
+  homePrice: 400000,
+  downPaymentPct: 20,
+  loanTerm: 30,
+  interestRate: 6.50,
+  propertyTax: 3000,
+  homeInsurance: 1500,
+  pmiRate: 0.50,
+  hoaFee: 0,
+};
+
+// ── Helpers ──
+function fmt(n: number): string {
+  return Math.round(n).toLocaleString('en-US');
+}
+function fmtDollar(n: number): string {
+  return '$' + fmt(n);
+}
+function parseCurrency(s: string): number {
+  return parseFloat(s.replace(/[^0-9.\-]/g, '')) || 0;
+}
+
+// ── Core Calculation ──
+function calculate() {
+  const loanAmount = state.homePrice * (1 - state.downPaymentPct / 100);
+  const monthlyRate = state.interestRate / 100 / 12;
+  const numPayments = state.loanTerm * 12;
+
+  let monthlyPI: number;
+  if (monthlyRate === 0) {
+    monthlyPI = loanAmount / numPayments;
+  } else {
+    monthlyPI = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+  }
+
+  const monthlyTax = state.propertyTax / 12;
+  const monthlyInsurance = state.homeInsurance / 12;
+  const monthlyPMI = state.downPaymentPct < 20 ? (loanAmount * (state.pmiRate / 100)) / 12 : 0;
+  const monthlyHOA = state.hoaFee;
+  const totalMonthly = monthlyPI + monthlyTax + monthlyInsurance + monthlyPMI + monthlyHOA;
+  const totalInterest = (monthlyPI * numPayments) - loanAmount;
+  const totalCost = totalMonthly * numPayments;
+
+  // Payoff date
+  const now = new Date();
+  const payoff = new Date(now.getFullYear(), now.getMonth() + numPayments);
+  const payoffStr = payoff.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+
+  // Amortization schedule (yearly)
+  const schedule: Array<{ year: number; principal: number; interest: number; balance: number; taxInsurance: number }> = [];
+  let balance = loanAmount;
+  const startYear = now.getFullYear();
+
+  for (let y = 0; y < state.loanTerm; y++) {
+    let yearPrincipal = 0;
+    let yearInterest = 0;
+    const monthsThisYear = y === 0 ? (12 - now.getMonth()) : (y === state.loanTerm - 1 ? now.getMonth() || 12 : 12);
+
+    for (let m = 0; m < 12; m++) {
+      if (balance <= 0) break;
+      const interestPayment = balance * monthlyRate;
+      const principalPayment = Math.min(monthlyPI - interestPayment, balance);
+      yearPrincipal += principalPayment;
+      yearInterest += interestPayment;
+      balance -= principalPayment;
+      if (balance < 0.01) balance = 0;
+    }
+    schedule.push({
+      year: startYear + y,
+      principal: yearPrincipal,
+      interest: yearInterest,
+      balance,
+      taxInsurance: (monthlyTax + monthlyInsurance + monthlyPMI + monthlyHOA) * 12,
+    });
+  }
+
+  return {
+    loanAmount,
+    monthlyPI,
+    monthlyTax,
+    monthlyInsurance,
+    monthlyPMI,
+    monthlyHOA,
+    totalMonthly,
+    totalInterest,
+    totalCost,
+    payoffStr,
+    schedule,
+    numPayments,
+  };
+}
+
+// ── DOM Updates ──
+function updateUI() {
+  const r = calculate();
+
+  // Monthly payment
+  const mpEl = document.getElementById('monthly-payment');
+  if (mpEl) mpEl.textContent = fmtDollar(r.totalMonthly);
+
+  // Summary stats
+  const ti = document.getElementById('total-interest');
+  if (ti) ti.textContent = fmtDollar(r.totalInterest);
+  const tc = document.getElementById('total-cost');
+  if (tc) tc.textContent = fmtDollar(r.totalCost);
+  const pd = document.getElementById('payoff-date');
+  if (pd) pd.textContent = r.payoffStr;
+  const la = document.getElementById('loan-amount-display');
+  if (la) la.textContent = fmtDollar(r.loanAmount);
+
+  // Donut chart
+  drawDonut(r);
+
+  // Balance chart
+  drawBalanceChart(r);
+
+  // Amortization table
+  drawAmortization(r);
+
+  // Extra payments
+  updateExtraPayments();
+}
+
+// ── Donut Chart (SVG) ──
+function drawDonut(r: ReturnType<typeof calculate>) {
+  const svg = document.getElementById('donut-chart') as SVGElement | null;
+  const legend = document.getElementById('breakdown-legend');
+  const centerVal = document.getElementById('donut-center-value');
+  if (!svg || !legend) return;
+
+  const items = [
+    { label: 'Principal & Interest', value: r.monthlyPI, color: 'var(--color-chart-principal)' },
+    { label: 'Property Tax', value: r.monthlyTax, color: 'var(--color-chart-tax)' },
+    { label: 'Home Insurance', value: r.monthlyInsurance, color: 'var(--color-chart-insurance)' },
+  ];
+  if (r.monthlyPMI > 0) items.push({ label: 'PMI', value: r.monthlyPMI, color: 'var(--color-chart-pmi)' });
+  if (r.monthlyHOA > 0) items.push({ label: 'HOA', value: r.monthlyHOA, color: 'var(--color-chart-hoa)' });
+
+  const total = items.reduce((s, i) => s + i.value, 0);
+  const cx = 100, cy = 100, R = 80, r2 = 55;
+
+  let paths = '';
+  let angle = -90;
+
+  items.forEach((item) => {
+    const pct = item.value / total;
+    const sweep = pct * 360;
+    const startAngle = angle;
+    const endAngle = angle + sweep;
+
+    const startOuter = polarToCartesian(cx, cy, R, startAngle);
+    const endOuter = polarToCartesian(cx, cy, R, endAngle);
+    const startInner = polarToCartesian(cx, cy, r2, endAngle);
+    const endInner = polarToCartesian(cx, cy, r2, startAngle);
+
+    const largeArc = sweep > 180 ? 1 : 0;
+
+    paths += `<path d="M${startOuter.x},${startOuter.y} A${R},${R} 0 ${largeArc},1 ${endOuter.x},${endOuter.y} L${startInner.x},${startInner.y} A${r2},${r2} 0 ${largeArc},0 ${endInner.x},${endInner.y}Z" fill="${item.color}" class="donut-segment" style="transition: opacity 0.2s"/>`;
+
+    angle += sweep;
+  });
+
+  svg.innerHTML = paths;
+
+  if (centerVal) centerVal.textContent = fmtDollar(r.monthlyPI);
+
+  // Legend
+  legend.innerHTML = items.map(item => `
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full flex-shrink-0" style="background:${item.color}"></span>
+        <span class="text-sm text-body">${item.label}</span>
+      </div>
+      <span class="text-sm font-medium text-ink tabular-nums">${fmtDollar(item.value)}</span>
+    </div>
+  `).join('');
+}
+
+function polarToCartesian(cx: number, cy: number, r: number, angle: number) {
+  const rad = (angle * Math.PI) / 180;
+  return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+}
+
+// ── Balance Chart (Canvas) ──
+function drawBalanceChart(r: ReturnType<typeof calculate>) {
+  const canvas = document.getElementById('balance-chart') as HTMLCanvasElement | null;
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  canvas.width = rect.width * dpr;
+  canvas.height = rect.height * dpr;
+  ctx.scale(dpr, dpr);
+
+  const W = rect.width;
+  const H = rect.height;
+  const padL = 60, padR = 20, padT = 10, padB = 30;
+  const plotW = W - padL - padR;
+  const plotH = H - padT - padB;
+
+  ctx.clearRect(0, 0, W, H);
+
+  const schedule = r.schedule;
+  if (schedule.length === 0) return;
+
+  // Check view mode
+  const activeView = document.querySelector('#chart-view-toggle .pill-toggle-item.active') as HTMLElement | null;
+  const viewMode = activeView?.dataset.view || 'balance';
+
+  if (viewMode === 'balance') {
+    // Draw balance line
+    const maxBalance = r.loanAmount;
+
+    // Y-axis labels
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-mute').trim() || '#8f8f8f';
+    ctx.font = '11px system-ui';
+    ctx.textAlign = 'right';
+
+    for (let i = 0; i <= 4; i++) {
+      const val = maxBalance * (1 - i / 4);
+      const y = padT + (plotH * i) / 4;
+      ctx.fillText('$' + fmt(val), padL - 8, y + 4);
+      ctx.beginPath();
+      ctx.strokeStyle = '#ebebeb';
+      ctx.lineWidth = 1;
+      ctx.moveTo(padL, y);
+      ctx.lineTo(W - padR, y);
+      ctx.stroke();
+    }
+
+    // X-axis labels
+    ctx.textAlign = 'center';
+    const step = Math.max(1, Math.floor(schedule.length / 6));
+    for (let i = 0; i < schedule.length; i += step) {
+      const x = padL + (plotW * i) / (schedule.length - 1);
+      ctx.fillText(String(schedule[i].year), x, H - 8);
+    }
+
+    // Area fill — interest (blue, light)
+    ctx.beginPath();
+    ctx.moveTo(padL, padT);
+    schedule.forEach((s, i) => {
+      const x = padL + (plotW * i) / (schedule.length - 1);
+      const y = padT + plotH * (1 - s.balance / maxBalance);
+      if (i === 0) ctx.moveTo(x, padT);
+      ctx.lineTo(x, y);
+    });
+    ctx.lineTo(padL + plotW, padT + plotH);
+    ctx.lineTo(padL, padT + plotH);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(0, 112, 243, 0.08)';
+    ctx.fill();
+
+    // Balance line
+    ctx.beginPath();
+    schedule.forEach((s, i) => {
+      const x = padL + (plotW * i) / (schedule.length - 1);
+      const y = padT + plotH * (1 - s.balance / maxBalance);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = '#0070f3';
+    ctx.lineWidth = 2.5;
+    ctx.stroke();
+
+  } else {
+    // Stacked bar chart: principal vs interest
+    const maxPayment = Math.max(...schedule.map(s => s.principal + s.interest + s.taxInsurance));
+    const barW = Math.max(4, (plotW / schedule.length) - 2);
+
+    // Y-axis labels
+    ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--color-mute').trim() || '#8f8f8f';
+    ctx.font = '11px system-ui';
+    ctx.textAlign = 'right';
+
+    for (let i = 0; i <= 4; i++) {
+      const val = maxPayment * (1 - i / 4);
+      const y = padT + (plotH * i) / 4;
+      ctx.fillText('$' + fmt(val), padL - 8, y + 4);
+      ctx.beginPath();
+      ctx.strokeStyle = '#ebebeb';
+      ctx.lineWidth = 1;
+      ctx.moveTo(padL, y);
+      ctx.lineTo(W - padR, y);
+      ctx.stroke();
+    }
+
+    // X-axis labels
+    ctx.textAlign = 'center';
+    const step = Math.max(1, Math.floor(schedule.length / 6));
+    for (let i = 0; i < schedule.length; i += step) {
+      const x = padL + (plotW * i) / (schedule.length - 1) + barW / 2;
+      ctx.fillText(String(schedule[i].year), x, H - 8);
+    }
+
+    // Bars
+    schedule.forEach((s, i) => {
+      const x = padL + (plotW * i) / schedule.length + 1;
+      const totalH = ((s.principal + s.interest + s.taxInsurance) / maxPayment) * plotH;
+      const principalH = (s.principal / maxPayment) * plotH;
+      const interestH = (s.interest / maxPayment) * plotH;
+      const taxH = (s.taxInsurance / maxPayment) * plotH;
+
+      let yOffset = padT + plotH - totalH;
+
+      // Tax & Insurance
+      ctx.fillStyle = 'rgba(121, 40, 202, 0.3)';
+      ctx.fillRect(x, yOffset, barW, taxH);
+      yOffset += taxH;
+
+      // Interest
+      ctx.fillStyle = 'rgba(0, 112, 243, 0.5)';
+      ctx.fillRect(x, yOffset, barW, interestH);
+      yOffset += interestH;
+
+      // Principal
+      ctx.fillStyle = '#171717';
+      ctx.fillRect(x, yOffset, barW, principalH);
+    });
+  }
+}
+
+// ── Amortization Table ──
+function drawAmortization(r: ReturnType<typeof calculate>) {
+  const tbody = document.getElementById('amort-tbody');
+  if (!tbody) return;
+
+  const viewMode = document.querySelector('#amort-view-toggle .pill-toggle-item.active') as HTMLElement | null;
+  const isMonthly = viewMode?.dataset.view === 'monthly';
+
+  if (isMonthly) {
+    // Monthly amortization
+    const monthlyRate = r.loanAmount > 0 ? state.interestRate / 100 / 12 : 0;
+    let balance = r.loanAmount;
+    let html = '';
+    const now = new Date();
+
+    for (let m = 1; m <= r.numPayments; m++) {
+      const interest = balance * monthlyRate;
+      const principal = Math.min(r.monthlyPI - interest, balance);
+      balance = Math.max(0, balance - principal);
+
+      const date = new Date(now.getFullYear(), now.getMonth() + m);
+      const dateStr = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+
+      html += `<tr class="border-b border-hairline hover:bg-hairline-soft/50 transition-colors">
+        <td class="py-2.5 px-3 text-sm tabular-nums text-mute">${m}</td>
+        <td class="py-2.5 px-3 text-sm text-body">${dateStr}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right">${fmtDollar(r.monthlyPI)}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right">${fmtDollar(principal)}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right">${fmtDollar(interest)}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right font-medium">${fmtDollar(balance)}</td>
+      </tr>`;
+    }
+    tbody.innerHTML = html;
+  } else {
+    // Yearly amortization
+    tbody.innerHTML = r.schedule.map((s, i) => `
+      <tr class="border-b border-hairline hover:bg-hairline-soft/50 transition-colors">
+        <td class="py-2.5 px-3 text-sm tabular-nums text-mute">${i + 1}</td>
+        <td class="py-2.5 px-3 text-sm text-body">${s.year}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right">${fmtDollar(s.principal + s.interest)}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right">${fmtDollar(s.principal)}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right">${fmtDollar(s.interest)}</td>
+        <td class="py-2.5 px-3 text-sm tabular-nums text-right font-medium">${fmtDollar(s.balance)}</td>
+      </tr>
+    `).join('');
+  }
+}
+
+// ── Extra Payments ──
+function updateExtraPayments() {
+  const extraMonthly = parseCurrency((document.getElementById('extra-monthly') as HTMLInputElement)?.value || '0');
+  if (extraMonthly <= 0) {
+    const result = document.getElementById('extra-result');
+    if (result) result.classList.add('hidden');
+    return;
+  }
+
+  const loanAmount = state.homePrice * (1 - state.downPaymentPct / 100);
+  const monthlyRate = state.interestRate / 100 / 12;
+  const numPayments = state.loanTerm * 12;
+  let monthlyPI: number;
+  if (monthlyRate === 0) {
+    monthlyPI = loanAmount / numPayments;
+  } else {
+    monthlyPI = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments)) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+  }
+
+  // Original totals
+  const origTotalInterest = (monthlyPI * numPayments) - loanAmount;
+
+  // With extra payments
+  let balance = loanAmount;
+  let months = 0;
+  let totalInterestWithExtra = 0;
+
+  while (balance > 0 && months < numPayments) {
+    const interest = balance * monthlyRate;
+    const principalBase = monthlyPI - interest;
+    const totalPrincipal = principalBase + extraMonthly;
+    const actualPrincipal = Math.min(totalPrincipal, balance);
+    totalInterestWithExtra += interest;
+    balance -= actualPrincipal;
+    months++;
+  }
+
+  const monthsSaved = numPayments - months;
+  const interestSaved = origTotalInterest - totalInterestWithExtra;
+  const now = new Date();
+  const newPayoff = new Date(now.getFullYear(), now.getMonth() + months);
+  const newPayoffStr = newPayoff.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+
+  const yearsSaved = Math.floor(monthsSaved / 12);
+  const remainingMonths = monthsSaved % 12;
+
+  const result = document.getElementById('extra-result');
+  if (result) {
+    result.classList.remove('hidden');
+    const ms = document.getElementById('extra-months-saved');
+    const is = document.getElementById('extra-interest-saved');
+    const np = document.getElementById('extra-new-payoff');
+    if (ms) ms.textContent = yearsSaved > 0 ? `${yearsSaved} yr ${remainingMonths} mo` : `${remainingMonths} months`;
+    if (is) is.textContent = fmtDollar(interestSaved);
+    if (np) np.textContent = newPayoffStr;
+  }
+}
+
+// ── Input Bindings ──
+function bindInput(inputId: string, sliderId: string | null, stateKey: keyof typeof state, isCurrency = false) {
+  const input = document.getElementById(inputId) as HTMLInputElement;
+  const slider = sliderId ? document.getElementById(sliderId) as HTMLInputElement : null;
+
+  const updateFromValue = (val: number) => {
+    (state as any)[stateKey] = val;
+    if (isCurrency && input) input.value = fmt(val);
+    if (slider) slider.value = String(val);
+    updateUI();
+  };
+
+  input?.addEventListener('input', () => {
+    const val = parseCurrency(input.value);
+    (state as any)[stateKey] = val;
+    if (slider) slider.value = String(val);
+    updateUI();
+  });
+
+  input?.addEventListener('blur', () => {
+    if (isCurrency) input.value = fmt((state as any)[stateKey]);
+  });
+
+  slider?.addEventListener('input', () => {
+    const val = parseFloat(slider.value);
+    (state as any)[stateKey] = val;
+    if (isCurrency) {
+      input.value = fmt(val);
+    } else {
+      input.value = String(val);
+    }
+    updateUI();
+  });
+}
+
+// Home Price
+bindInput('home-price', 'home-price-slider', 'homePrice', true);
+
+// Down Payment (special: linked to %)
+const dpInput = document.getElementById('down-payment') as HTMLInputElement;
+const dpPctInput = document.getElementById('down-payment-pct') as HTMLInputElement;
+const dpSlider = document.getElementById('down-payment-slider') as HTMLInputElement;
+
+function updateDownPayment(pct: number) {
+  state.downPaymentPct = Math.max(0, Math.min(100, pct));
+  const dpAmount = state.homePrice * state.downPaymentPct / 100;
+  dpInput.value = fmt(dpAmount);
+  dpPctInput.value = state.downPaymentPct.toFixed(0);
+  dpSlider.value = String(state.downPaymentPct);
+  updateUI();
+}
+
+dpPctInput?.addEventListener('input', () => {
+  updateDownPayment(parseFloat(dpPctInput.value) || 0);
+});
+
+dpInput?.addEventListener('input', () => {
+  const val = parseCurrency(dpInput.value);
+  const pct = state.homePrice > 0 ? (val / state.homePrice) * 100 : 0;
+  updateDownPayment(pct);
+});
+
+dpInput?.addEventListener('blur', () => {
+  dpInput.value = fmt(state.homePrice * state.downPaymentPct / 100);
+});
+
+dpSlider?.addEventListener('input', () => {
+  updateDownPayment(parseFloat(dpSlider.value));
+});
+
+// Interest Rate
+bindInput('interest-rate', 'interest-rate-slider', 'interestRate', false);
+
+// Property Tax, Insurance, PMI, HOA
+bindInput('property-tax', null, 'propertyTax', true);
+bindInput('home-insurance', null, 'homeInsurance', true);
+bindInput('pmi-rate', null, 'pmiRate', false);
+bindInput('hoa-fee', null, 'hoaFee', true);
+
+// Also update down payment when home price changes
+const hpInput = document.getElementById('home-price') as HTMLInputElement;
+const hpSlider = document.getElementById('home-price-slider') as HTMLInputElement;
+const origHPInputHandler = hpInput?.oninput;
+
+hpInput?.addEventListener('input', () => {
+  state.homePrice = parseCurrency(hpInput.value);
+  hpSlider.value = String(state.homePrice);
+  const dpAmount = state.homePrice * state.downPaymentPct / 100;
+  dpInput.value = fmt(dpAmount);
+});
+
+hpSlider?.addEventListener('input', () => {
+  state.homePrice = parseFloat(hpSlider.value);
+  hpInput.value = fmt(state.homePrice);
+  const dpAmount = state.homePrice * state.downPaymentPct / 100;
+  dpInput.value = fmt(dpAmount);
+});
+
+// Loan Term Pills
+const termToggle = document.getElementById('loan-term-toggle');
+termToggle?.querySelectorAll('.pill-toggle-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    termToggle.querySelectorAll('.pill-toggle-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    state.loanTerm = parseInt((btn as HTMLElement).dataset.value || '30');
+    updateUI();
+  });
+});
+
+// Chart View Toggle
+const chartToggle = document.getElementById('chart-view-toggle');
+chartToggle?.querySelectorAll('.pill-toggle-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    chartToggle.querySelectorAll('.pill-toggle-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    updateUI();
+  });
+});
+
+// Amortization View Toggle
+const amortToggle = document.getElementById('amort-view-toggle');
+amortToggle?.querySelectorAll('.pill-toggle-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    amortToggle.querySelectorAll('.pill-toggle-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    updateUI();
+  });
+});
+
+// Extra Payments
+document.getElementById('extra-monthly')?.addEventListener('input', () => updateExtraPayments());
+
+// Resize handler for chart
+window.addEventListener('resize', () => {
+  const r = calculate();
+  drawBalanceChart(r);
+});
+
+// ── Initial render ──
+updateUI();
+</script>

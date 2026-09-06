@@ -1,0 +1,38 @@
+---
+// AmortizationTable component — toggleable monthly/yearly view
+---
+
+<section id="amortization" class="py-16 bg-canvas border-t border-hairline">
+  <div class="container-main">
+    <div class="card">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+        <div>
+          <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-1">Amortization Schedule</p>
+          <h3 class="text-ink font-semibold text-lg tracking-tight">Payment Breakdown by Period</h3>
+        </div>
+        <div class="pill-toggle" id="amort-view-toggle">
+          <button class="pill-toggle-item active" data-view="yearly">Yearly</button>
+          <button class="pill-toggle-item" data-view="monthly">Monthly</button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto -mx-6 px-6">
+        <table class="w-full min-w-[600px]">
+          <thead>
+            <tr class="border-b-2 border-hairline">
+              <th class="py-2.5 px-3 text-left text-xs font-medium text-mute uppercase tracking-wider">#</th>
+              <th class="py-2.5 px-3 text-left text-xs font-medium text-mute uppercase tracking-wider">Date</th>
+              <th class="py-2.5 px-3 text-right text-xs font-medium text-mute uppercase tracking-wider">Payment</th>
+              <th class="py-2.5 px-3 text-right text-xs font-medium text-mute uppercase tracking-wider">Principal</th>
+              <th class="py-2.5 px-3 text-right text-xs font-medium text-mute uppercase tracking-wider">Interest</th>
+              <th class="py-2.5 px-3 text-right text-xs font-medium text-mute uppercase tracking-wider">Balance</th>
+            </tr>
+          </thead>
+          <tbody id="amort-tbody">
+            <!-- Populated by Calculator.astro script -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
