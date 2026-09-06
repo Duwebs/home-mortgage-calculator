@@ -50,6 +50,22 @@ import '../styles/global.css';
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Apply saved/system theme before first paint to avoid a flash -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var prefersDark =
+            typeof window.matchMedia === 'function' &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var dark = saved === 'dark' || (saved !== 'light' && prefersDark);
+          if (dark) document.documentElement.classList.add('dark');
+        } catch (e) {
+          /* no-op: default to light if localStorage is unavailable */
+        }
+      })();
+    </script>
   </head>
   <body class="min-h-screen flex flex-col">
     <slot />

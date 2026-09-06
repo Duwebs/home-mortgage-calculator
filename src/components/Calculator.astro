@@ -372,6 +372,11 @@ function updateUI() {
 }
 
 // ── Donut Chart (SVG) ──
+// Read a CSS custom property (resolves against current light/dark theme).
+function cssVar(name: string, fallback: string) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim() || fallback;
+}
+
 function drawDonut(r: ReturnType<typeof calculate>) {
   const svg = document.getElementById('donut-chart') as SVGElement | null;
   const legend = document.getElementById('breakdown-legend');
@@ -474,7 +479,7 @@ function drawBalanceChart(r: ReturnType<typeof calculate>) {
       const y = padT + (plotH * i) / 4;
       ctx.fillText('$' + fmt(val), padL - 8, y + 4);
       ctx.beginPath();
-      ctx.strokeStyle = '#ebebeb';
+      ctx.strokeStyle = cssVar('--color-hairline', '#ebebeb');
       ctx.lineWidth = 1;
       ctx.moveTo(padL, y);
       ctx.lineTo(W - padR, y);
@@ -501,8 +506,10 @@ function drawBalanceChart(r: ReturnType<typeof calculate>) {
     ctx.lineTo(padL + plotW, padT + plotH);
     ctx.lineTo(padL, padT + plotH);
     ctx.closePath();
-    ctx.fillStyle = 'rgba(0, 112, 243, 0.08)';
+    ctx.fillStyle = cssVar('--color-chart-interest', '#0070f3');
+    ctx.globalAlpha = 0.08;
     ctx.fill();
+    ctx.globalAlpha = 1;
 
     // Balance line
     ctx.beginPath();
@@ -512,7 +519,7 @@ function drawBalanceChart(r: ReturnType<typeof calculate>) {
       if (i === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     });
-    ctx.strokeStyle = '#0070f3';
+    ctx.strokeStyle = cssVar('--color-chart-interest', '#0070f3');
     ctx.lineWidth = 2.5;
     ctx.stroke();
 
@@ -531,7 +538,7 @@ function drawBalanceChart(r: ReturnType<typeof calculate>) {
       const y = padT + (plotH * i) / 4;
       ctx.fillText('$' + fmt(val), padL - 8, y + 4);
       ctx.beginPath();
-      ctx.strokeStyle = '#ebebeb';
+      ctx.strokeStyle = cssVar('--color-hairline', '#ebebeb');
       ctx.lineWidth = 1;
       ctx.moveTo(padL, y);
       ctx.lineTo(W - padR, y);
@@ -557,17 +564,21 @@ function drawBalanceChart(r: ReturnType<typeof calculate>) {
       let yOffset = padT + plotH - totalH;
 
       // Tax & Insurance
-      ctx.fillStyle = 'rgba(121, 40, 202, 0.3)';
+      ctx.fillStyle = cssVar('--color-chart-tax', '#7928ca');
+      ctx.globalAlpha = 0.3;
       ctx.fillRect(x, yOffset, barW, taxH);
+      ctx.globalAlpha = 1;
       yOffset += taxH;
 
       // Interest
-      ctx.fillStyle = 'rgba(0, 112, 243, 0.5)';
+      ctx.fillStyle = cssVar('--color-chart-interest', '#0070f3');
+      ctx.globalAlpha = 0.5;
       ctx.fillRect(x, yOffset, barW, interestH);
+      ctx.globalAlpha = 1;
       yOffset += interestH;
 
       // Principal
-      ctx.fillStyle = '#171717';
+      ctx.fillStyle = cssVar('--color-chart-principal', '#171717');
       ctx.fillRect(x, yOffset, barW, principalH);
     });
   }
@@ -814,6 +825,13 @@ document.getElementById('extra-monthly')?.addEventListener('input', () => update
 // Resize handler for chart
 window.addEventListener('resize', () => {
   const r = calculate();
+  drawBalanceChart(r);
+});
+
+// Redraw charts when the theme changes (light <-> dark)
+window.addEventListener('themechange', () => {
+  const r = calculate();
+  drawDonut(r);
   drawBalanceChart(r);
 });
 
