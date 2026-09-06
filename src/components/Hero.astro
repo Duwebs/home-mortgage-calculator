@@ -2,56 +2,67 @@
 // Hero component — mesh gradient background, display headline, pill CTA
 ---
 
-<section class="relative overflow-hidden bg-canvas" id="hero">
+<section class="relative overflow-hidden bg-canvas py-16 sm:py-24 lg:py-32" id="hero">
   <!-- Mesh gradient background -->
-  <div class="absolute inset-0 mesh-gradient opacity-70" aria-hidden="true"></div>
+  <div class="absolute inset-0 mesh-gradient opacity-60" aria-hidden="true"></div>
 
   <!-- Subtle grid overlay -->
   <div class="absolute inset-0 opacity-[0.03]" style="background-image: url(&quot;data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23171717' stroke-width='1'%3E%3Cpath d='M0 30h60M30 0v60'/%3E%3C/g%3E%3C/svg%3E&quot;)" aria-hidden="true"></div>
 
-  <div class="container-main relative z-10 py-20 sm:py-28 lg:py-36 text-center">
-    <!-- Mono eyebrow -->
-    <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-6 animate-fade-in">
-      Free Mortgage Calculator
-    </p>
+  <div class="container-main relative z-10 text-center">
+    <!-- Mono Pill Eyebrow -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-hairline bg-surface/80 text-xs font-mono font-medium tracking-wide uppercase text-mute mb-6 shadow-xs animate-fade-in backdrop-blur-xs">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>Smart Mortgage Calculator</span>
+    </div>
 
     <!-- Display headline -->
-    <h1 class="text-ink font-semibold tracking-[-2.4px] text-[clamp(32px,5vw,48px)] leading-[1] max-w-3xl mx-auto mb-6 animate-slide-up">
-      Calculate Your Home Mortgage Payment
+    <h1 class="text-ink font-bold tracking-tight text-3xl sm:text-5xl lg:text-6xl leading-[1.12] max-w-4xl mx-auto mb-6 animate-slide-up">
+      Calculate Your Complete <br class="hidden sm:inline" />
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-neutral-900 via-neutral-600 to-neutral-900 dark:from-white dark:via-neutral-300 dark:to-white">Home Mortgage Payment</span>
     </h1>
 
     <!-- Subtitle -->
-    <p class="text-body text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-10 animate-slide-up-delay">
-      Estimate your monthly mortgage payment with taxes, insurance, PMI, and more.
-      See exactly what you'll pay — instantly.
+    <p class="text-mute text-base sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto mb-9 animate-slide-up-delay">
+      Estimate your total monthly payment with principal, interest, property taxes, homeowners insurance, PMI, and HOA fees in real-time.
     </p>
 
     <!-- CTA buttons -->
-    <div class="flex items-center justify-center gap-3 animate-slide-up-delay-2">
-      <a href="#calculator" class="btn-primary">
-        Calculate Now
+    <div class="flex flex-wrap items-center justify-center gap-3.5 animate-slide-up-delay-2 mb-12">
+      <a href="#calculator" class="btn-primary gap-2">
+        <span>Start Calculation</span>
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
           <path d="M8 3L8 13M8 13L13 8M8 13L3 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </a>
       <a href="#learn" class="btn-secondary">
-        Learn More
+        How It Works
       </a>
     </div>
 
-    <!-- Trust badges -->
-    <div class="flex items-center justify-center gap-6 mt-12 text-mute animate-fade-in-delay">
-      <div class="flex items-center gap-1.5 text-xs">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 1L8.854 4.854L13 5.582L10 8.472L10.708 13L7 10.854L3.292 13L4 8.472L1 5.582L5.146 4.854L7 1Z" stroke="currentColor" stroke-width="1" stroke-linejoin="round"/></svg>
-        No Sign-up Required
-      </div>
-      <div class="flex items-center gap-1.5 text-xs">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M11.667 4.667L5.5 10.833L2.333 7.667" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        100% Free
-      </div>
-      <div class="flex items-center gap-1.5 text-xs">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M7 12.25C9.8995 12.25 12.25 9.8995 12.25 7C12.25 4.1005 9.8995 1.75 7 1.75C4.1005 1.75 1.75 4.1005 1.75 7C1.75 9.8995 4.1005 12.25 7 12.25Z" stroke="currentColor" stroke-width="1"/><path d="M7 4.083V7L9.333 8.167" stroke="currentColor" stroke-width="1" stroke-linecap="round"/></svg>
-        Instant Results
+    <!-- Trust badges bar -->
+    <div class="animate-fade-in-delay">
+      <div class="inline-flex flex-wrap items-center justify-center gap-y-2 gap-x-6 px-6 py-2.5 rounded-full border border-hairline bg-surface/60 backdrop-blur-md text-xs font-medium text-mute shadow-xs">
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="text-emerald-500" aria-hidden="true">
+            <path d="M13.333 4L6 11.333L2.667 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>No Sign-up Required</span>
+        </div>
+        <div class="hidden sm:block text-hairline">•</div>
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="text-emerald-500" aria-hidden="true">
+            <path d="M13.333 4L6 11.333L2.667 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>100% Free & Private</span>
+        </div>
+        <div class="hidden sm:block text-hairline">•</div>
+        <div class="flex items-center gap-2">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="text-emerald-500" aria-hidden="true">
+            <path d="M13.333 4L6 11.333L2.667 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Instant Real-Time Math</span>
+        </div>
       </div>
     </div>
   </div>
@@ -63,30 +74,31 @@
     to { opacity: 1; }
   }
   @keyframes slideUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
   .animate-fade-in {
-    animation: fadeIn 0.6s ease forwards;
+    animation: fadeIn 0.5s ease forwards;
   }
   .animate-slide-up {
-    animation: slideUp 0.6s ease forwards;
+    animation: slideUp 0.5s ease forwards;
     animation-delay: 0.1s;
     opacity: 0;
   }
   .animate-slide-up-delay {
-    animation: slideUp 0.6s ease forwards;
-    animation-delay: 0.25s;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.2s;
     opacity: 0;
   }
   .animate-slide-up-delay-2 {
-    animation: slideUp 0.6s ease forwards;
-    animation-delay: 0.4s;
+    animation: slideUp 0.5s ease forwards;
+    animation-delay: 0.3s;
     opacity: 0;
   }
   .animate-fade-in-delay {
-    animation: fadeIn 0.8s ease forwards;
-    animation-delay: 0.6s;
+    animation: fadeIn 0.6s ease forwards;
+    animation-delay: 0.4s;
     opacity: 0;
   }
 </style>
+

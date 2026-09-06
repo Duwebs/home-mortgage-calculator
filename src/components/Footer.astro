@@ -1,65 +1,73 @@
 ---
-// Footer component — multi-column layout with hairline border
+// Footer component — balanced 12-column layout with hairline border
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="border-t border-hairline bg-canvas py-16">
+<footer class="border-t border-hairline bg-canvas pt-16 pb-12">
   <div class="container-main">
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-12">
-      <!-- Brand -->
-      <div class="col-span-2 sm:col-span-1">
-        <a href="/" class="flex items-center gap-2 text-ink no-underline mb-4">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M3 10.5L12 3L21 10.5V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 21V14H15V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span class="font-semibold text-sm tracking-tight">MortgageCalc</span>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 mb-14">
+      <!-- Brand & Mission (4 cols) -->
+      <div class="md:col-span-4">
+        <a href="/" class="inline-flex items-center gap-2 text-ink no-underline mb-4">
+          <div class="p-1.5 rounded-lg border border-hairline bg-surface shadow-2xs">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="text-ink">
+              <path d="M3 10.5L12 3L21 10.5V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9 21V14H15V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <span class="font-bold text-base tracking-tight">MortgageCalc</span>
         </a>
-        <p class="text-xs text-mute leading-relaxed">
-          Free, no sign-up mortgage calculator. Estimate your monthly payment with taxes, insurance, PMI, and more.
+        <p class="text-sm text-mute leading-relaxed max-w-sm mb-4">
+          A modern, private, and instant home mortgage payment estimator. Analyze loan terms, property taxes, PMI, and amortization schedules effortlessly.
         </p>
+        <div class="flex items-center gap-2 text-xs font-mono text-mute">
+          <span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>No Data Tracking • Client-Side Only</span>
+        </div>
       </div>
 
-      <!-- Calculator -->
-      <div>
-        <h4 class="text-xs font-medium text-ink uppercase tracking-wider mb-3">Calculator</h4>
-        <ul class="space-y-2">
-          <li><a href="#calculator" class="text-sm text-mute hover:text-ink transition-colors">Payment Calculator</a></li>
-          <li><a href="#amortization" class="text-sm text-mute hover:text-ink transition-colors">Amortization Table</a></li>
-          <li><a href="#extra-payments" class="text-sm text-mute hover:text-ink transition-colors">Extra Payments</a></li>
+      <!-- Calculator Tools (3 cols) -->
+      <div class="md:col-span-3">
+        <h4 class="text-xs font-mono font-semibold text-ink uppercase tracking-wider mb-4">Calculators</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#calculator" class="text-sm text-mute hover:text-ink transition-colors">Monthly Payment Calculator</a></li>
+          <li><a href="#amortization" class="text-sm text-mute hover:text-ink transition-colors">Full Amortization Schedule</a></li>
+          <li><a href="#extra-payments" class="text-sm text-mute hover:text-ink transition-colors">Extra Payment Savings</a></li>
+          <li><a href="#calculator" class="text-sm text-mute hover:text-ink transition-colors">PMI & HOA Cost Estimator</a></li>
         </ul>
       </div>
 
-      <!-- Learn -->
-      <div>
-        <h4 class="text-xs font-medium text-ink uppercase tracking-wider mb-3">Learn</h4>
-        <ul class="space-y-2">
-          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">How Payments Work</a></li>
-          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">Understanding PMI</a></li>
-          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">Fixed vs ARM</a></li>
-          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">Best Rate Tips</a></li>
+      <!-- Learn & Resources (3 cols) -->
+      <div class="md:col-span-3">
+        <h4 class="text-xs font-mono font-semibold text-ink uppercase tracking-wider mb-4">Mortgage Guides</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">How Mortgage Math Works</a></li>
+          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">Understanding PMI Rules</a></li>
+          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">Fixed-Rate vs. ARM Loans</a></li>
+          <li><a href="#learn" class="text-sm text-mute hover:text-ink transition-colors">Tips to Reduce Interest</a></li>
         </ul>
       </div>
 
-      <!-- About -->
-      <div>
-        <h4 class="text-xs font-medium text-ink uppercase tracking-wider mb-3">About</h4>
-        <ul class="space-y-2">
+      <!-- Legal & Info (2 cols) -->
+      <div class="md:col-span-2">
+        <h4 class="text-xs font-mono font-semibold text-ink uppercase tracking-wider mb-4">Legal</h4>
+        <ul class="space-y-2.5">
           <li><a href="#" class="text-sm text-mute hover:text-ink transition-colors">Privacy Policy</a></li>
-          <li><a href="#" class="text-sm text-mute hover:text-ink transition-colors">Terms of Use</a></li>
-          <li><a href="#" class="text-sm text-mute hover:text-ink transition-colors">Contact</a></li>
+          <li><a href="#" class="text-sm text-mute hover:text-ink transition-colors">Terms of Service</a></li>
+          <li><a href="#" class="text-sm text-mute hover:text-ink transition-colors">Disclaimer</a></li>
         </ul>
       </div>
     </div>
 
-    <!-- Bottom bar -->
-    <div class="pt-8 border-t border-hairline flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-xs text-faint">
+    <!-- Bottom Bar -->
+    <div class="pt-8 border-t border-hairline flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-mute">
         © {currentYear} HomeMortgageCalculator. All rights reserved.
       </p>
-      <p class="text-xs text-faint text-center sm:text-right max-w-md">
-        This calculator is for informational purposes only. Actual payments may vary. Consult a mortgage professional for exact figures.
+      <p class="text-xs text-mute text-center md:text-right max-w-lg leading-relaxed">
+        <strong>Disclaimer:</strong> This calculator provides estimates for educational and planning purposes only. Actual interest rates, taxes, and loan terms vary by lender.
       </p>
     </div>
   </div>
 </footer>
+
