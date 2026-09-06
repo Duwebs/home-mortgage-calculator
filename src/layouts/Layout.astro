@@ -11,6 +11,8 @@ const {
 
 const siteBase = 'https://homemortgagecalculator.vercel.app';
 
+import { faqs } from '../data/faqs';
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -25,48 +27,14 @@ const faqSchema = {
     },
     {
       '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'How do I calculate my monthly mortgage payment?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Enter your home price, down payment, loan term, and interest rate. The calculator adds principal and interest to your monthly property taxes, homeowners insurance, PMI, and HOA fees to show your total monthly payment in real time.',
-          },
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: f.answer,
         },
-        {
-          '@type': 'Question',
-          name: 'What is included in a home mortgage payment?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Most mortgage payments include principal, interest, property taxes, and homeowners insurance — commonly called PITI. If you put down less than 20%, you may also pay private mortgage insurance (PMI), and HOA fees if your property has them.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'How can I pay off my mortgage faster?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Making extra monthly payments toward your principal, using biweekly payments, or applying annual lump sums reduces your balance faster and can save tens of thousands of dollars in interest and shorten your loan term by several years.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'How is PMI calculated?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'PMI is typically 0.3% to 1.5% of the original loan amount per year, divided into 12 monthly payments. It is usually required when your down payment is under 20% and is removed once you reach 20% equity or automatically at 22%.',
-          },
-        },
-        {
-          '@type': 'Question',
-          name: 'Should I choose a 15-year or 30-year mortgage?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'A 15-year mortgage usually has a lower interest rate and builds equity faster, but has higher monthly payments. A 30-year mortgage offers lower monthly payments and more flexibility. Use the loan term toggle to compare both scenarios.',
-          },
-        },
-      ],
+      })),
     },
   ],
 };
