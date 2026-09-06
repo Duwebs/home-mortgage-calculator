@@ -38,7 +38,7 @@
 
         <!-- Down Payment -->
         <div class="space-y-2">
-          <div class="flex items-center justify-between">
+          <div class="flex items-center justify-between gap-x-2 gap-y-2 flex-wrap">
             <label for="down-payment" class="text-sm font-medium text-ink">Down Payment</label>
             <div class="flex items-center gap-2">
               <div class="relative">
@@ -199,7 +199,7 @@
         </div>
 
         <!-- Summary Stats -->
-        <div class="grid grid-cols-2 gap-3" id="summary-stats">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="summary-stats">
           <div class="card text-center py-4">
             <p class="text-xs text-mute mb-1">Total Interest</p>
             <p class="text-ink font-semibold text-lg tabular-nums" id="total-interest">$407,218</p>
@@ -226,17 +226,17 @@
 <section class="py-16 bg-canvas border-t border-hairline">
   <div class="container-main">
     <div class="card">
-      <div class="flex items-center justify-between mb-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
         <div>
           <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-1">Loan Balance Over Time</p>
           <h3 class="text-ink font-semibold text-lg tracking-tight">Principal vs Interest</h3>
         </div>
-        <div class="pill-toggle text-xs" id="chart-view-toggle">
+        <div class="pill-toggle text-xs self-start sm:self-auto" id="chart-view-toggle">
           <button class="pill-toggle-item active" data-view="balance">Balance</button>
           <button class="pill-toggle-item" data-view="payments">Payments</button>
         </div>
       </div>
-      <div class="relative" style="height: 320px;">
+      <div class="relative h-64 sm:h-80">
         <canvas id="balance-chart" class="w-full h-full"></canvas>
       </div>
     </div>

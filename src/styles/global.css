@@ -379,12 +379,11 @@ body {
     radial-gradient(ellipse at 90% 70%, rgba(249, 203, 40, 0.08) 0%, transparent 50%);
 }
 
-/* Container helper */
+/* Container helper — tighter gutter on small screens, max 24px on desktop */
 @utility container-main {
   width: 100%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-inline: clamp(16px, 4vw, 24px);
 }
