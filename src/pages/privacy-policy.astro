@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Privacy Policy — Home Mortgage Calculator';
+const description =
+  'Privacy Policy for Home Mortgage Calculator. Learn how we handle your data, why our calculator runs entirely in your browser, and how we protect your privacy. No accounts, no tracking.';
+---
+
+<Layout
+  title={title}
+  description={description}
+  path="/privacy-policy"
+>
+  <Navbar />
+  <main class="flex-1">
+    <section class="py-16 sm:py-24 bg-canvas">
+      <div class="container-main max-w-3xl">
+        <h1 class="text-ink font-semibold text-3xl sm:text-4xl tracking-tight mb-2">
+          Privacy Policy
+        </h1>
+        <p class="text-sm text-mute mb-10">Last updated: September 2026</p>
+
+        <div class="space-y-8 text-body text-base leading-relaxed">
+          <p>
+            Home Mortgage Calculator ("we," "our," or "us") provides this free online
+            mortgage payment estimator as an educational tool. This Privacy Policy
+            explains how we collect, use, and protect information when you use our
+            website. By using this site, you agree to the practices described below.
+          </p>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Our Approach to Privacy</h2>
+            <p>
+              Our core promise is simple: <strong>we do not track you</strong>. The
+              mortgage calculator runs entirely in your browser, and every calculation —
+              home price, down payment, interest rate, taxes, and your amortization
+              schedule — happens locally on your device. We never store, transmit, or
+              have access to the numbers you enter.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Information We Collect</h2>
+            <p>
+              Because the calculator is client-side only, we do not collect any personal
+              information through the tool itself. You do not need an account, and we do
+              not ask for your name, email address, or contact details to use it.
+            </p>
+            <ul class="list-disc pl-5 space-y-2 mt-4">
+              <li>No account registration or profiles.</li>
+              <li>No collection of names, emails, or phone numbers via the calculator.</li>
+              <li>No storage of the financial figures you enter.</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Automatically Collected Data</h2>
+            <p>
+              Like most websites, we may see standard technical data transmitted by your
+              browser, such as your IP address, browser type, and pages visited. This
+              information is used in aggregate to understand general site performance and
+              improve the experience. It is not used to identify you personally.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Cookies</h2>
+            <p>
+              We use a small local storage cookie only to remember your preferred light or
+              dark theme so the experience is consistent on your next visit. This setting
+              stays on your device and contains no personal information. We do not use
+              advertising or third-party tracking cookies.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Links to Other Websites</h2>
+            <p>
+              Our site may contain links to external websites for your convenience. We are
+              not responsible for the privacy practices or the content of those sites. We
+              encourage you to review the privacy policy of any website you visit.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Data Security</h2>
+            <p>
+              Since we do not collect or store your financial inputs, there is no personal
+              data to secure on our servers. Where any limited technical data is processed,
+              we follow reasonable safeguards to protect it consistent with industry
+              standards.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Children's Privacy</h2>
+            <p>
+              Our website is intended for general audiences and is not directed at children
+              under the age of 13. We do not knowingly collect personal information from
+              children.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Changes to This Policy</h2>
+            <p>
+              We may update this Privacy Policy from time to time to reflect changes in our
+              practices or for legal, operational, or regulatory reasons. When we do, we
+              will revise the "Last updated" date at the top of this page. We encourage you
+              to review this page periodically.
+            </p>
+          </section>
+
+          <section>
+            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">Contact Us</h2>
+            <p>
+              If you have any questions about this Privacy Policy or how we handle your
+              information, please reach out through our{' '}
+              <a href="/contact-us" class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">Contact Us</a>{' '}
+              page.
+            </p>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

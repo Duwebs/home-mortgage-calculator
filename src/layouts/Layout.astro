@@ -2,18 +2,23 @@
 interface Props {
   title?: string;
   description?: string;
+  path?: string;
 }
 
 const {
   title = 'Home Mortgage Calculator — Estimate Your Monthly Payment',
   description = 'Free online mortgage calculator with real-time estimates. Calculate monthly payments with property tax, insurance, PMI, HOA fees, and amortization schedules. See how extra payments save you money.',
+  path = '/',
 } = Astro.props;
 
 const siteBase = 'https://homemortgagecalculator.vercel.app';
+const canonicalUrl = siteBase + (path === '/' ? '/' : path);
+const isHome = path === '/';
 
 import { faqs } from '../data/faqs';
 
-const faqSchema = {
+// Home page: SoftwareApplication + FAQPage graph for rich results.
+const homeSchema = {
   '@context': 'https://schema.org',
   '@graph': [
     {
@@ -39,6 +44,17 @@ const faqSchema = {
   ],
 };
 
+// Subpages: a simple WebPage object pointing at the page's own canonical URL.
+const pageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: title,
+  description,
+  url: canonicalUrl,
+};
+
+const schema = isHome ? homeSchema : pageSchema;
+
 import '../styles/global.css';
 ---
 
@@ -53,7 +69,7 @@ import '../styles/global.css';
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="HM Calc" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="canonical" href="https://homemortgagecalculator.vercel.app/" />
+    <link rel="canonical" href={canonicalUrl} />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#fafafa" />
 
@@ -68,7 +84,7 @@ import '../styles/global.css';
     <meta property="og:site_name" content="Home Mortgage Calculator" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content="https://homemortgagecalculator.vercel.app/" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content="https://homemortgagecalculator.vercel.app/og-image.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -81,8 +97,8 @@ import '../styles/global.css';
     <meta name="twitter:image" content="https://homemortgagecalculator.vercel.app/og-image.png" />
     <meta name="twitter:image:alt" content="Home Mortgage Calculator — estimate your monthly mortgage payment" />
 
-    <!-- Structured Data: SoftwareApplication + FAQPage -->
-    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+    <!-- Structured Data: SoftwareApplication + FAQPage (home) or WebPage (subpages) -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
     <!-- Fonts: Geist Sans + Geist Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
