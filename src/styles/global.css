@@ -51,17 +51,6 @@
   --font-sans: "Geist", "Inter", Arial, sans-serif;
   --font-mono: "Geist Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* ── Spacing ── */
-  --spacing-xxs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 40px;
-  --spacing-3xl: 64px;
-  --spacing-4xl: 96px;
-  --spacing-section: 128px;
 
   /* ── Border Radius ── */
   --radius-none: 0px;
@@ -189,14 +178,14 @@ body {
     background-color: var(--color-elevated);
     border: 1px solid var(--color-hairline);
     border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
+    padding: 24px;
   }
 
   .card-elevated {
     background-color: var(--color-elevated);
     border: 1px solid var(--color-hairline);
     border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
+    padding: 24px;
     box-shadow: var(--shadow-floating);
   }
 
