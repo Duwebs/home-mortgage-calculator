@@ -3,12 +3,15 @@ interface Props {
   title?: string;
   description?: string;
   path?: string;
+  /** Set true on error pages (404/500) to keep them out of search indexes. */
+  noindex?: boolean;
 }
 
 const {
   title = 'Home Mortgage Calculator — Estimate Your Monthly Payment',
   description = 'Free online mortgage calculator with real-time estimates. Calculate monthly payments with property tax, insurance, PMI, HOA fees, and amortization schedules. See how extra payments save you money.',
   path = '/',
+  noindex = false,
 } = Astro.props;
 
 const siteBase = 'https://homemortgagecalculator.vercel.app';
@@ -76,7 +79,7 @@ import '../styles/global.css';
     <!-- SEO -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

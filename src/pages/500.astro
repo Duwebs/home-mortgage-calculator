@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'Something Went Wrong (500) — Home Mortgage Calculator';
+const description =
+  'Something went wrong on our end. Please try again, or head back to the free Home Mortgage Calculator to estimate your monthly payment.';
+---
+
+<Layout
+  title={title}
+  description={description}
+  path="/500"
+  noindex
+>
+  <Navbar />
+  <main class="flex-1">
+    <section class="py-16 sm:py-24 bg-canvas">
+      <div class="container-main max-w-3xl text-center">
+        <p class="font-mono text-sm tracking-widest text-body uppercase mb-4">Error 500</p>
+        <h1 class="text-ink font-semibold text-4xl sm:text-5xl tracking-tight mb-6">
+          Something went wrong
+        </h1>
+        <p class="text-body text-lg leading-relaxed max-w-xl mx-auto mb-10">
+          An unexpected error occurred on our end. Please try refreshing the page — if the
+          problem persists, let us know and we will get it fixed.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="/" class="btn-primary">Back to Calculator</a>
+          <a href="/contact-us" class="btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
