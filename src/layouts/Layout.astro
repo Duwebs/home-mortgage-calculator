@@ -9,6 +9,68 @@ const {
   description = 'Free online mortgage calculator with real-time estimates. Calculate monthly payments with property tax, insurance, PMI, HOA fees, and amortization schedules. See how extra payments save you money.',
 } = Astro.props;
 
+const siteBase = 'https://homemortgagecalculator.vercel.app';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebApplication',
+      name: 'Home Mortgage Calculator',
+      url: siteBase + '/',
+      applicationCategory: 'FinanceApplication',
+      operatingSystem: 'Any',
+      description: 'A free, real-time home mortgage calculator that estimates monthly payments including principal, interest, property taxes, home insurance, PMI, and HOA fees, plus amortization schedules and extra-payment savings.',
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'How do I calculate my monthly mortgage payment?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Enter your home price, down payment, loan term, and interest rate. The calculator adds principal and interest to your monthly property taxes, homeowners insurance, PMI, and HOA fees to show your total monthly payment in real time.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'What is included in a home mortgage payment?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Most mortgage payments include principal, interest, property taxes, and homeowners insurance — commonly called PITI. If you put down less than 20%, you may also pay private mortgage insurance (PMI), and HOA fees if your property has them.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How can I pay off my mortgage faster?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Making extra monthly payments toward your principal, using biweekly payments, or applying annual lump sums reduces your balance faster and can save tens of thousands of dollars in interest and shorten your loan term by several years.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How is PMI calculated?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'PMI is typically 0.3% to 1.5% of the original loan amount per year, divided into 12 monthly payments. It is usually required when your down payment is under 20% and is removed once you reach 20% equity or automatically at 22%.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Should I choose a 15-year or 30-year mortgage?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'A 15-year mortgage usually has a lower interest rate and builds equity faster, but has higher monthly payments. A 30-year mortgage offers lower monthly payments and more flexibility. Use the loan term toggle to compare both scenarios.',
+          },
+        },
+      ],
+    },
+  ],
+};
+
 import '../styles/global.css';
 ---
 
@@ -25,6 +87,7 @@ import '../styles/global.css';
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href="https://homemortgagecalculator.vercel.app/" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#fafafa" />
 
     <!-- SEO -->
     <title>{title}</title>
@@ -33,15 +96,25 @@ import '../styles/global.css';
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Home Mortgage Calculator" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content="https://homemortgagecalculator.vercel.app/" />
-    <meta property="og:site_name" content="Home Mortgage Calculator" />
+    <meta property="og:image" content="https://homemortgagecalculator.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Home Mortgage Calculator — estimate your monthly mortgage payment" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content="https://homemortgagecalculator.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Home Mortgage Calculator — estimate your monthly mortgage payment" />
+
+    <!-- Structured Data: SoftwareApplication + FAQPage -->
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
     <!-- Fonts: Geist Sans + Geist Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
