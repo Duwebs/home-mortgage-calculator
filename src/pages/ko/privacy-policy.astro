@@ -1,0 +1,35 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath, type Lang } from '../../i18n/utils';
+
+const lang = 'ko' as Lang;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+const meta = t('meta.privacy');
+const p = t('privacy');
+---
+
+<Layout title={meta.title} description={meta.description} path="/privacy-policy">
+  <Navbar {lang} />
+  <main class="flex-1">
+    <section class="py-16 sm:py-24 bg-canvas">
+      <div class="container-main max-w-3xl">
+        <h1 class="text-ink font-semibold text-3xl sm:text-4xl tracking-tight mb-2">{p.h1}</h1>
+        <p class="text-sm text-mute mb-10">{p.updated}</p>
+
+        <div class="space-y-8 text-body text-base leading-relaxed">
+          <p>{p.lead}</p>
+          {p.sections.map((section) => (
+            <section>
+              <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{section.h}</h2>
+              <div set:html={section.html} />
+            </section>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer {lang} />
+</Layout>

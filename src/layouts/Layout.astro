@@ -1,10 +1,14 @@
 ---
+import { localeTags, locales, languages, defaultLang } from '../i18n/ui';
+import { getLangFromUrl, useTranslations, type Lang } from '../i18n/utils';
+
 interface Props {
   title?: string;
   description?: string;
   path?: string;
   /** Set true on error pages (404/500) to keep them out of search indexes. */
   noindex?: boolean;
+  lang?: Lang;
 }
 
 const {
@@ -12,13 +16,23 @@ const {
   description = 'Free online mortgage calculator with real-time estimates. Calculate monthly payments with property tax, insurance, PMI, HOA fees, and amortization schedules. See how extra payments save you money.',
   path = '/',
   noindex = false,
+  lang = getLangFromUrl(Astro.url),
 } = Astro.props;
 
 const siteBase = 'https://homemortgagecalculator.vercel.app';
-const canonicalUrl = siteBase + (path === '/' ? '/' : path);
+const localizedPath = lang === defaultLang ? (path === '/' ? '/' : path) : `/${lang}${path === '/' ? '/' : path}`;
+const canonicalUrl = siteBase + localizedPath;
 const isHome = path === '/';
+const t = useTranslations(lang);
 
-import { faqs } from '../data/faqs';
+// hreflang alternates: one per language + x-default pointing at the English page.
+const alternates = locales.map((l) => ({
+  lang: localeTags[l].hreflang,
+  href: siteBase + (l === defaultLang ? (path === '/' ? '/' : path) : `/${l}${path === '/' ? '/' : path}`),
+}));
+const xDefault = { lang: 'x-default', href: siteBase + (path === '/' ? '/' : path) };
+
+const faqs = t('faq.items') as Array<{ q: string; a: string }>;
 
 // Home page: SoftwareApplication + FAQPage graph for rich results.
 const homeSchema = {
@@ -37,10 +51,10 @@ const homeSchema = {
       '@type': 'FAQPage',
       mainEntity: faqs.map((f) => ({
         '@type': 'Question',
-        name: f.question,
+        name: f.q,
         acceptedAnswer: {
           '@type': 'Answer',
-          text: f.answer,
+          text: f.a,
         },
       })),
     },
@@ -62,7 +76,7 @@ import '../styles/global.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -73,6 +87,8 @@ import '../styles/global.css';
     <meta name="apple-mobile-web-app-title" content="HM Calc" />
     <link rel="manifest" href="/site.webmanifest" />
     <link rel="canonical" href={canonicalUrl} />
+    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+    <link rel="alternate" hreflang={xDefault.lang} href={xDefault.href} />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#fafafa" />
 
@@ -83,7 +99,8 @@ import '../styles/global.css';
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={localeTags[lang].ogLocale} />
+    {locales.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={localeTags[l].ogLocale} />)}
     <meta property="og:site_name" content="Home Mortgage Calculator" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

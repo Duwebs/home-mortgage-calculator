@@ -1,137 +1,40 @@
 ---
 // EducationSection component — accordion-style educational content
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const items = (t('education.items') || []) as Array<{ t: string; html: string }>;
 ---
 
 <section id="learn" class="py-16 sm:py-24 bg-canvas border-t border-hairline">
   <div class="container-main">
     <div class="text-center mb-12">
-      <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-3">Learn</p>
+      <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-3">{t('education.eyebrow')}</p>
       <h2 class="text-ink font-semibold text-2xl sm:text-[32px] leading-tight tracking-[-1.28px]">
-        Understanding Your Mortgage
+        {t('education.heading')}
       </h2>
       <p class="text-body text-base mt-3 max-w-xl mx-auto">
-        Everything you need to know about home mortgages, from basic concepts to money-saving strategies.
+        {t('education.sub')}
       </p>
     </div>
 
     <div class="max-w-2xl mx-auto">
-      <!-- Accordion 1 -->
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-1">
-          <span>How Do Mortgage Payments Work?</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="accordion-content" id="acc-1">
-          <div class="accordion-body">
-            <p class="mb-3">Your monthly mortgage payment typically consists of four components, often called <strong>PITI</strong>:</p>
-            <ul class="list-disc pl-5 space-y-1.5">
-              <li><strong>Principal:</strong> The portion that goes toward paying down the amount you borrowed. Early in your loan, this is a small portion of your payment.</li>
-              <li><strong>Interest:</strong> The cost of borrowing money. In the early years, most of your payment goes toward interest.</li>
-              <li><strong>Taxes:</strong> Property taxes assessed by your local government, typically collected monthly and held in escrow.</li>
-              <li><strong>Insurance:</strong> Homeowner's insurance protects your property. If your down payment is less than 20%, you'll also pay PMI (Private Mortgage Insurance).</li>
-            </ul>
-            <p class="mt-3">As you make payments over time, the split between principal and interest shifts — a process called <strong>amortization</strong>. Each month, slightly more goes to principal and slightly less to interest.</p>
+      {items.map((item, i) => (
+        <div class="accordion-item">
+          <button class="accordion-trigger" aria-expanded="false" aria-controls={`acc-${i + 1}`}>
+            <span>{item.t}</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="accordion-content" id={`acc-${i + 1}`}>
+            <div class="accordion-body" set:html={item.html} />
           </div>
         </div>
-      </div>
-
-      <!-- Accordion 2 -->
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-2">
-          <span>What Is PMI and How Can I Avoid It?</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="accordion-content" id="acc-2">
-          <div class="accordion-body">
-            <p class="mb-3"><strong>Private Mortgage Insurance (PMI)</strong> is required by lenders when your down payment is less than 20% of the home's purchase price. PMI protects the lender — not you — if you default on the loan.</p>
-            <p class="mb-3">PMI typically costs between <strong>0.3% to 1.5%</strong> of the original loan amount per year. For a $320,000 loan at 0.5%, that's about $133 per month.</p>
-            <p class="mb-3"><strong>Ways to avoid or remove PMI:</strong></p>
-            <ul class="list-disc pl-5 space-y-1.5">
-              <li>Put at least 20% down at purchase</li>
-              <li>Request PMI removal once your equity reaches 20% through payments</li>
-              <li>PMI is automatically cancelled at 22% equity by law (Homeowners Protection Act)</li>
-              <li>Refinance once your home's value has increased enough</li>
-              <li>Consider a piggyback loan (80-10-10) to avoid PMI</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Accordion 3 -->
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-3">
-          <span>Fixed-Rate vs. Adjustable-Rate Mortgages</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="accordion-content" id="acc-3">
-          <div class="accordion-body">
-            <p class="mb-3"><strong>Fixed-rate mortgages</strong> lock in your interest rate for the entire loan term. Your principal and interest payment never changes, making budgeting predictable.</p>
-            <p class="mb-3"><strong>Adjustable-rate mortgages (ARMs)</strong> start with a lower introductory rate that adjusts periodically based on market conditions. A 5/1 ARM, for example, has a fixed rate for 5 years, then adjusts annually.</p>
-            <p class="mb-3"><strong>When to consider each:</strong></p>
-            <ul class="list-disc pl-5 space-y-1.5">
-              <li><strong>Fixed-rate:</strong> Best when rates are low, you plan to stay long-term, and you value payment stability.</li>
-              <li><strong>ARM:</strong> Can save money if you plan to sell or refinance within the introductory period, or if rates are expected to drop.</li>
-            </ul>
-            <p class="mt-3">In a rising rate environment, a fixed-rate mortgage protects you from future increases. If rates spike, ARM holders can see their payments increase significantly.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Accordion 4 -->
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-4">
-          <span>Tips for Getting the Best Mortgage Rate</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="accordion-content" id="acc-4">
-          <div class="accordion-body">
-            <p class="mb-3">Even a small difference in your interest rate can save — or cost — you tens of thousands of dollars over the life of your loan. Here's how to secure the best rate:</p>
-            <ul class="list-disc pl-5 space-y-1.5">
-              <li><strong>Improve your credit score:</strong> Scores above 740 typically qualify for the best rates. Pay down debt, avoid new credit inquiries, and correct any errors on your credit report.</li>
-              <li><strong>Save a larger down payment:</strong> 20% or more eliminates PMI and often qualifies you for better rates.</li>
-              <li><strong>Shop multiple lenders:</strong> Get quotes from at least 3-5 lenders. Rates can vary by 0.5% or more between lenders.</li>
-              <li><strong>Consider paying points:</strong> Each discount point (1% of the loan amount) typically reduces your rate by 0.25%. This makes sense if you'll stay in the home long enough to recoup the upfront cost.</li>
-              <li><strong>Choose a shorter term:</strong> 15-year mortgages typically have rates 0.5-0.75% lower than 30-year loans.</li>
-              <li><strong>Lock your rate:</strong> Once you find a good rate, lock it in. Rates can change daily.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- Accordion 5 -->
-      <div class="accordion-item">
-        <button class="accordion-trigger" aria-expanded="false" aria-controls="acc-5">
-          <span>How Extra Payments Can Save You Thousands</span>
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <div class="accordion-content" id="acc-5">
-          <div class="accordion-body">
-            <p class="mb-3">Making extra payments toward your mortgage principal is one of the most powerful ways to save money on interest and pay off your home faster.</p>
-            <p class="mb-3"><strong>Example:</strong> On a $320,000 loan at 6.5% for 30 years, adding just $200/month in extra payments can:</p>
-            <ul class="list-disc pl-5 space-y-1.5">
-              <li>Pay off your mortgage <strong>6+ years early</strong></li>
-              <li>Save over <strong>$100,000 in interest</strong></li>
-            </ul>
-            <p class="mt-3"><strong>Strategies for making extra payments:</strong></p>
-            <ul class="list-disc pl-5 space-y-1.5">
-              <li><strong>Biweekly payments:</strong> Pay half your monthly payment every two weeks. This equals 13 full payments per year instead of 12.</li>
-              <li><strong>Round up:</strong> Round your payment up to the nearest $100.</li>
-              <li><strong>Annual lump sum:</strong> Apply your tax refund or bonus toward the principal once a year.</li>
-            </ul>
-            <p class="mt-3">Use the <a href="#extra-payments" class="text-link underline">Extra Payments calculator</a> above to see exactly how much you could save.</p>
-          </div>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>
@@ -160,3 +63,4 @@
     });
   });
 </script>
+

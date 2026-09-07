@@ -2,109 +2,65 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 
-const title = 'Contact Us — Home Mortgage Calculator';
-const description =
-  'Contact the Home Mortgage Calculator team. Send us a message, ask a question, or share feedback about our free mortgage payment calculator. We typically respond within 2 business days.';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+const meta = t('meta.contact');
+const c = t('contact');
 ---
 
-<Layout
-  title={title}
-  description={description}
-  path="/contact-us"
->
-  <Navbar />
+<Layout title={meta.title} description={meta.description} path="/contact-us">
+  <Navbar {lang} />
   <main class="flex-1">
     <section class="py-16 sm:py-24 bg-canvas">
       <div class="container-main max-w-3xl">
-        <h1 class="text-ink font-semibold text-3xl sm:text-4xl tracking-tight mb-4">
-          Contact Us
-        </h1>
-        <p class="text-body text-base leading-relaxed mb-10">
-          Have a question about our mortgage calculator, want to suggest a feature, or
-          have feedback on how we can improve? We would love to hear from you. Fill out the
-          form below, and we will do our best to get back to you within two business days.
-        </p>
+        <h1 class="text-ink font-semibold text-3xl sm:text-4xl tracking-tight mb-4">{c.h1}</h1>
+        <p class="text-body text-base leading-relaxed mb-10">{c.intro}</p>
 
-        <!-- The calculator form has no backend, so we compose an email via the visitor's mail client. -->
-        <form
-          class="border border-hairline rounded-lg bg-elevated p-6 sm:p-8 space-y-6"
-          action="mailto:openmailon@gmail.com"
-          method="get"
-          enctype="text/plain"
-        >
+        <form class="border border-hairline rounded-lg bg-elevated p-6 sm:p-8 space-y-6" action="mailto:openmailon@gmail.com" method="get" enctype="text/plain">
           <div class="grid sm:grid-cols-2 gap-6">
             <label class="flex flex-col gap-2">
-              <span class="text-sm font-medium text-ink">Name</span>
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder="Your name"
-                class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link"
-              />
+              <span class="text-sm font-medium text-ink">{c.nameLabel}</span>
+              <input type="text" name="name" required placeholder={c.namePh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link" />
             </label>
             <label class="flex flex-col gap-2">
-              <span class="text-sm font-medium text-ink">Email</span>
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="you@example.com"
-                class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link"
-              />
+              <span class="text-sm font-medium text-ink">{c.emailLabel}</span>
+              <input type="email" name="email" required placeholder={c.emailPh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link" />
             </label>
           </div>
 
           <label class="flex flex-col gap-2">
-            <span class="text-sm font-medium text-ink">Subject</span>
-            <input
-              type="text"
-              name="subject"
-              placeholder="How can we help?"
-              class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link"
-            />
+            <span class="text-sm font-medium text-ink">{c.subjectLabel}</span>
+            <input type="text" name="subject" placeholder={c.subjectPh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link" />
           </label>
 
           <label class="flex flex-col gap-2">
-            <span class="text-sm font-medium text-ink">Message</span>
-            <textarea
-              name="body"
-              rows="6"
-              required
-              placeholder="Write your message here..."
-              class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link resize-y"
-            ></textarea>
+            <span class="text-sm font-medium text-ink">{c.messageLabel}</span>
+            <textarea name="body" rows="6" required placeholder={c.messagePh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link resize-y"></textarea>
           </label>
 
-          <button type="submit" class="btn-primary w-full sm:w-auto">Send Message</button>
-          <p class="text-xs text-mute leading-relaxed">
-            Submitting this form opens your email app with your message pre-filled. We
-            never store the content you type here on our servers.
-          </p>
+          <button type="submit" class="btn-primary w-full sm:w-auto">{c.sendBtn}</button>
+          <p class="text-xs text-mute leading-relaxed">{c.formNote}</p>
         </form>
 
         <div class="grid sm:grid-cols-2 gap-6 mt-10">
           <div class="border border-hairline rounded-lg p-6 bg-elevated">
-            <h2 class="text-ink font-semibold text-lg tracking-tight mb-2">Email Us</h2>
+            <h2 class="text-ink font-semibold text-lg tracking-tight mb-2">{c.emailCard.h}</h2>
             <p class="text-body text-sm leading-relaxed">
-              Prefer to write directly? Reach us at{' '}
-              <a href="mailto:openmailon@gmail.com" class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">
-                openmailon@gmail.com
-              </a>.
+              {c.emailCard.p} <a href="mailto:openmailon@gmail.com" class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">openmailon@gmail.com</a>.
             </p>
           </div>
           <div class="border border-hairline rounded-lg p-6 bg-elevated">
-            <h2 class="text-ink font-semibold text-lg tracking-tight mb-2">FAQ</h2>
+            <h2 class="text-ink font-semibold text-lg tracking-tight mb-2">{c.faqCard.h}</h2>
             <p class="text-body text-sm leading-relaxed">
-              Many common questions are answered on our homepage. Check out the{' '}
-              <a href="/#faq" class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">frequently asked questions</a>{' '}
-              before reaching out.
+              {c.faqCard.p} <a href={tp('/#faq')} class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">{c.faqCard.linkText}</a>.
             </p>
           </div>
         </div>
       </div>
     </section>
   </main>
-  <Footer />
+  <Footer {lang} />
 </Layout>

@@ -1,0 +1,59 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath, type Lang } from '../../i18n/utils';
+
+const lang = 'de' as Lang;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+const meta = t('meta.contact');
+const c = t('contact');
+---
+
+<Layout title={meta.title} description={meta.description} path="/contact-us">
+  <Navbar {lang} />
+  <main class="flex-1">
+    <section class="py-16 sm:py-24 bg-canvas">
+      <div class="container-main max-w-3xl">
+        <h1 class="text-ink font-semibold text-3xl sm:text-4xl tracking-tight mb-4">{c.h1}</h1>
+        <p class="text-body text-base leading-relaxed mb-10">{c.lead}</p>
+
+        <form class="border border-hairline rounded-lg bg-elevated p-6 sm:p-8 space-y-6" action="mailto:openmailon@gmail.com" method="get" enctype="text/plain">
+          <div class="grid sm:grid-cols-2 gap-6">
+            <label class="flex flex-col gap-2">
+              <span class="text-sm font-medium text-ink">{c.form.name}</span>
+              <input type="text" name="name" required placeholder={c.form.namePh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link" />
+            </label>
+            <label class="flex flex-col gap-2">
+              <span class="text-sm font-medium text-ink">{c.form.email}</span>
+              <input type="email" name="email" required placeholder={c.form.emailPh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link" />
+            </label>
+          </div>
+          <label class="flex flex-col gap-2">
+            <span class="text-sm font-medium text-ink">{c.form.subject}</span>
+            <input type="text" name="subject" placeholder={c.form.subjectPh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link" />
+          </label>
+          <label class="flex flex-col gap-2">
+            <span class="text-sm font-medium text-ink">{c.form.message}</span>
+            <textarea name="body" rows="6" required placeholder={c.form.messagePh} class="w-full rounded-sm border border-hairline bg-canvas px-3 py-2.5 text-sm text-ink placeholder:text-mute focus:outline-none focus:ring-2 focus:ring-link resize-y"></textarea>
+          </label>
+          <button type="submit" class="btn-primary w-full sm:w-auto">{c.form.submit}</button>
+          <p class="text-xs text-mute leading-relaxed">{c.form.note}</p>
+        </form>
+
+        <div class="grid sm:grid-cols-2 gap-6 mt-10">
+          <div class="border border-hairline rounded-lg p-6 bg-elevated">
+            <h2 class="text-ink font-semibold text-lg tracking-tight mb-2">{c.email.h}</h2>
+            <p class="text-body text-sm leading-relaxed">{c.email.p} <a href="mailto:openmailon@gmail.com" class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">openmailon@gmail.com</a>.</p>
+          </div>
+          <div class="border border-hairline rounded-lg p-6 bg-elevated">
+            <h2 class="text-ink font-semibold text-lg tracking-tight mb-2">{c.faq.h}</h2>
+            <p class="text-body text-sm leading-relaxed">{c.faq.p} <a href={tp('/#faq')} class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">{c.faq.linkText}</a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer {lang} />
+</Layout>

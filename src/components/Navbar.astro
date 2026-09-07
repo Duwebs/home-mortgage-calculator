@@ -1,14 +1,22 @@
 ---
 // Navbar component — sticky top nav following Geist nav-bar spec
+import { languages, type Lang, defaultLang } from '../i18n/ui';
+import { useTranslations, useTranslatedPath } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const translatePath = useTranslatedPath(lang);
+const route = Astro.url.pathname.replace(/^\/(en|es|ja|fr|de|pt|ko|it)/, '') || '/';
 ---
 
 <header
   id="site-header"
   class="sticky top-0 z-50 border-b border-hairline bg-canvas/80 backdrop-blur-lg"
 >
-  <nav class="container-main flex items-center justify-between h-16" aria-label="Main navigation">
+  <nav class="container-main flex items-center justify-between h-16" aria-label={t('nav.mainNav')}>
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-2 text-ink no-underline" id="nav-logo">
+    <a href={translatePath('/')} class="flex items-center gap-2 text-ink no-underline" id="nav-logo">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M3 10.5L12 3L21 10.5V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M9 21V14H15V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -21,34 +29,60 @@
     <!-- Desktop Nav Links -->
     <div class="hidden md:flex items-center gap-1">
       <a href="#calculator" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Calculator
+        {t('nav.calculator')}
       </a>
       <a href="#amortization" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Amortization
+        {t('nav.amortization')}
       </a>
       <a href="#extra-payments" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Extra Payments
+        {t('nav.extra')}
       </a>
       <a href="#learn" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Learn
+        {t('nav.learn')}
       </a>
-      <a href="/about-us" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        About
+      <a href={translatePath('/about-us')} class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        {t('nav.about')}
       </a>
-      <a href="/contact-us" class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Contact
+      <a href={translatePath('/contact-us')} class="px-3 py-1.5 rounded-full text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        {t('nav.contact')}
       </a>
     </div>
 
     <!-- CTA + Mobile Menu -->
     <div class="flex items-center gap-2">
-      <!-- Theme toggle -->
+      <!-- Language picker -->
+      <div class="relative" id="lang-picker">
+        <button
+          id="lang-btn"
+          type="button"
+          class="p-2 rounded-sm border border-hairline bg-elevated text-ink transition-colors flex items-center gap-1 text-sm"
+          aria-label={t('nav.language')}
+          aria-expanded="false"
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M1.5 8H14.5M8 1.5C10.5 4 10.5 12 8 14.5M8 1.5C5.5 4 5.5 12 8 14.5" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <span class="hidden sm:inline uppercase">{lang}</span>
+        </button>
+        <div id="lang-menu" class="hidden absolute right-0 mt-2 w-40 rounded-md border border-hairline bg-elevated shadow-lg py-1 z-50">
+          {Object.entries(languages).map(([l, label]) => (
+            <a
+              href={l === defaultLang ? route : `/${l}${route === '/' ? '/' : route}`}
+              class={`block px-4 py-2 text-sm ${l === lang ? 'text-ink font-medium' : 'text-body'} hover:bg-hairline-soft hover:text-ink`}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+      </div>
+
       <button
         id="theme-toggle"
         type="button"
         class="p-2 rounded-sm border border-hairline bg-elevated text-ink transition-colors"
-        aria-label="Toggle dark mode"
-        title="Toggle dark mode"
+        aria-label={t('nav.toggleDark')}
+        title={t('nav.toggleDark')}
       >
         <svg id="icon-sun" class="hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
@@ -60,14 +94,14 @@
       </button>
 
       <a href="#calculator" class="btn-primary btn-sm hidden sm:inline-flex">
-        Get Started
+        {t('nav.getStarted')}
       </a>
 
       <!-- Mobile hamburger -->
       <button
         id="mobile-menu-btn"
         class="md:hidden p-2 rounded-sm border border-hairline bg-elevated text-ink"
-        aria-label="Toggle navigation menu"
+        aria-label={t('nav.toggleMenu')}
         aria-expanded="false"
       >
         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -85,26 +119,26 @@
   >
     <div class="container-main py-4 flex flex-col gap-1">
       <a href="#calculator" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Calculator
+        {t('nav.calculator')}
       </a>
       <a href="#amortization" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Amortization
+        {t('nav.amortization')}
       </a>
       <a href="#extra-payments" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Extra Payments
+        {t('nav.extra')}
       </a>
       <a href="#learn" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Learn
+        {t('nav.learn')}
       </a>
-      <a href="/about-us" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        About
+      <a href={translatePath('/about-us')} class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        {t('nav.about')}
       </a>
-      <a href="/contact-us" class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
-        Contact
+      <a href={translatePath('/contact-us')} class="px-3 py-2.5 rounded-sm text-sm text-body hover:text-ink hover:bg-hairline-soft transition-colors">
+        {t('nav.contact')}
       </a>
       <div class="pt-2 mt-2 border-t border-hairline">
         <a href="#calculator" class="btn-primary w-full text-center">
-          Get Started
+          {t('nav.getStarted')}
         </a>
       </div>
     </div>
@@ -132,6 +166,20 @@
       hamburger?.classList.remove('hidden');
       closeIcon?.classList.add('hidden');
     });
+  });
+
+  // ── Language picker ──
+  const langBtn = document.getElementById('lang-btn');
+  const langMenu = document.getElementById('lang-menu');
+  langBtn?.addEventListener('click', () => {
+    const isOpen = langMenu?.classList.toggle('hidden') === false;
+    langBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  document.addEventListener('click', (e) => {
+    if (!document.getElementById('lang-picker')?.contains(e.target as Node)) {
+      langMenu?.classList.add('hidden');
+      langBtn?.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // ── Theme toggle ──

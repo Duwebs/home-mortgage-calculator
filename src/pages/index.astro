@@ -9,18 +9,23 @@ import EducationSection from '../components/EducationSection.astro';
 import SEOContent from '../components/SEOContent.astro';
 import CTABand from '../components/CTABand.astro';
 import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations, type Lang } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const meta = t('meta.home');
 ---
 
-<Layout>
-  <Navbar />
+<Layout title={meta.title} description={meta.description} path="/">
+  <Navbar {lang} />
   <main class="flex-1">
-    <Hero />
-    <Calculator />
-    <AmortizationTable />
-    <ExtraPayments />
-    <EducationSection />
-    <SEOContent />
-    <CTABand />
+    <Hero {lang} />
+    <Calculator {lang} />
+    <AmortizationTable {lang} />
+    <ExtraPayments {lang} />
+    <EducationSection {lang} />
+    <SEOContent {lang} />
+    <CTABand {lang} />
   </main>
-  <Footer />
+  <Footer {lang} />
 </Layout>

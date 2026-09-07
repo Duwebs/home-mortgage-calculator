@@ -1,14 +1,34 @@
 ---
 // Calculator component — real-time mortgage calculator with sliders, donut chart, and results
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const c = t('calc');
+// Strings consumed by the client-side script (locale-aware labels & formatting).
+const i18nData = {
+  locale: lang,
+  legend: c.legend,
+  savings: c.savings,
+  timeSaved: c.timeSaved,
+  interestSaved: c.interestSaved,
+  newPayoff: c.newPayoff,
+  yrMo: c.mo,
+  months: c.months,
+};
 ---
+
+<script type="application/json" id="i18n-data" set:html={JSON.stringify(i18nData)} />
 
 <section id="calculator" class="py-16 sm:py-24 bg-canvas">
   <div class="container-main">
     <!-- Section header -->
     <div class="text-center mb-12">
-      <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-3">Home Mortgage Calculator</p>
+      <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-3">{c.eyebrow}</p>
       <h2 class="text-ink font-semibold text-2xl sm:text-[32px] leading-tight tracking-[-1.28px]">
-        Calculate Your Monthly Mortgage Payment
+        {c.heading}
       </h2>
     </div>
 
@@ -18,7 +38,7 @@
         <!-- Home Price -->
         <div class="space-y-2">
           <div class="flex items-center justify-between">
-            <label for="home-price" class="text-sm font-medium text-ink">Home Price</label>
+            <label for="home-price" class="text-sm font-medium text-ink">{c.homePrice}</label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
               <input
@@ -39,7 +59,7 @@
         <!-- Down Payment -->
         <div class="space-y-2">
           <div class="flex items-center justify-between gap-x-2 gap-y-2 flex-wrap">
-            <label for="down-payment" class="text-sm font-medium text-ink">Down Payment</label>
+            <label for="down-payment" class="text-sm font-medium text-ink">{c.downPayment}</label>
             <div class="flex items-center gap-2">
               <div class="relative">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
@@ -84,7 +104,7 @@
         <!-- Interest Rate -->
         <div class="space-y-2">
           <div class="flex items-center justify-between">
-            <label for="interest-rate" class="text-sm font-medium text-ink">Interest Rate</label>
+            <label for="interest-rate" class="text-sm font-medium text-ink">{c.interestRate}</label>
             <div class="relative">
               <input
                 type="text"
@@ -260,8 +280,10 @@ const state = {
 };
 
 // ── Helpers ──
+const I18N = JSON.parse(document.getElementById('i18n-data')?.textContent || '{}');
+const LOCALE = I18N.locale || 'en';
 function fmt(n: number): string {
-  return Math.round(n).toLocaleString('en-US');
+  return Math.round(n).toLocaleString(LOCALE);
 }
 function fmtDollar(n: number): string {
   return '$' + fmt(n);
@@ -294,7 +316,7 @@ function calculate() {
   // Payoff date
   const now = new Date();
   const payoff = new Date(now.getFullYear(), now.getMonth() + numPayments);
-  const payoffStr = payoff.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  const payoffStr = payoff.toLocaleDateString(LOCALE, { month: 'short', year: 'numeric' });
 
   // Amortization schedule (yearly)
   const schedule: Array<{ year: number; principal: number; interest: number; balance: number; taxInsurance: number }> = [];
@@ -605,7 +627,7 @@ function drawAmortization(r: ReturnType<typeof calculate>) {
       balance = Math.max(0, balance - principal);
 
       const date = new Date(now.getFullYear(), now.getMonth() + m);
-      const dateStr = date.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+      const dateStr = date.toLocaleDateString(LOCALE, { month: 'short', year: 'numeric' });
 
       html += `<tr class="border-b border-hairline hover:bg-hairline-soft/50 transition-colors">
         <td class="py-2.5 px-3 text-sm tabular-nums text-mute">${m}</td>
@@ -673,7 +695,7 @@ function updateExtraPayments() {
   const interestSaved = origTotalInterest - totalInterestWithExtra;
   const now = new Date();
   const newPayoff = new Date(now.getFullYear(), now.getMonth() + months);
-  const newPayoffStr = newPayoff.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+  const newPayoffStr = newPayoff.toLocaleDateString(LOCALE, { month: 'short', year: 'numeric' });
 
   const yearsSaved = Math.floor(monthsSaved / 12);
   const remainingMonths = monthsSaved % 12;

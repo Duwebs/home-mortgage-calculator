@@ -1,0 +1,30 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath, type Lang } from '../../i18n/utils';
+
+const lang = 'ja' as Lang;
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+const meta = t('errors.404.meta');
+const e = t('errors.404');
+---
+
+<Layout title={meta.title} description={meta.description} path="/404" noindex>
+  <Navbar {lang} />
+  <main class="flex-1">
+    <section class="py-16 sm:py-24 bg-canvas">
+      <div class="container-main max-w-3xl text-center">
+        <p class="font-mono text-sm tracking-widest text-body uppercase mb-4">{e.eyebrow}</p>
+        <h1 class="text-ink font-semibold text-4xl sm:text-5xl tracking-tight mb-6">{e.h1}</h1>
+        <p class="text-body text-lg leading-relaxed max-w-xl mx-auto mb-10">{e.p}</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href={tp('/')} class="btn-primary">{e.homeBtn}</a>
+          <a href={tp('/contact-us')} class="btn-secondary">{e.contactBtn}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer {lang} />
+</Layout>

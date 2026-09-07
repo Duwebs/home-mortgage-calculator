@@ -2,36 +2,29 @@
 import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations, useTranslatedPath } from '../i18n/utils';
 
-const title = 'Something Went Wrong (500) — Home Mortgage Calculator';
-const description =
-  'Something went wrong on our end. Please try again, or head back to the free Home Mortgage Calculator to estimate your monthly payment.';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const tp = useTranslatedPath(lang);
+const meta = t('errors.500.meta');
+const e = t('errors.500');
 ---
 
-<Layout
-  title={title}
-  description={description}
-  path="/500"
-  noindex
->
-  <Navbar />
+<Layout title={meta.title} description={meta.description} path="/500" noindex>
+  <Navbar {lang} />
   <main class="flex-1">
     <section class="py-16 sm:py-24 bg-canvas">
       <div class="container-main max-w-3xl text-center">
-        <p class="font-mono text-sm tracking-widest text-body uppercase mb-4">Error 500</p>
-        <h1 class="text-ink font-semibold text-4xl sm:text-5xl tracking-tight mb-6">
-          Something went wrong
-        </h1>
-        <p class="text-body text-lg leading-relaxed max-w-xl mx-auto mb-10">
-          An unexpected error occurred on our end. Please try refreshing the page — if the
-          problem persists, let us know and we will get it fixed.
-        </p>
+        <p class="font-mono text-sm tracking-widest text-body uppercase mb-4">{e.eyebrow}</p>
+        <h1 class="text-ink font-semibold text-4xl sm:text-5xl tracking-tight mb-6">{e.h1}</h1>
+        <p class="text-body text-lg leading-relaxed max-w-xl mx-auto mb-10">{e.p}</p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="/" class="btn-primary">Back to Calculator</a>
-          <a href="/contact-us" class="btn-secondary">Contact Us</a>
+          <a href={tp('/')} class="btn-primary">{e.homeBtn}</a>
+          <a href={tp('/contact-us')} class="btn-secondary">{e.contactBtn}</a>
         </div>
       </div>
     </section>
   </main>
-  <Footer />
+  <Footer {lang} />
 </Layout>

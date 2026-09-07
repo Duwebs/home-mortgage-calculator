@@ -1,14 +1,21 @@
 ---
 // ExtraPayments component — see how additional payments save you money
+import { defaultLang, type Lang } from '../i18n/ui';
+import { useTranslations } from '../i18n/utils';
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const calc = t('calc');
 ---
 
 <section id="extra-payments" class="py-16 bg-canvas border-t border-hairline">
   <div class="container-main">
     <div class="card">
       <div class="mb-6">
-        <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-1">Extra Payments</p>
-        <h3 class="text-ink font-semibold text-lg tracking-tight">See How Extra Payments Save You Money</h3>
-        <p class="text-sm text-body mt-1">Add a monthly extra payment to see how much time and interest you can save.</p>
+        <p class="font-mono text-xs font-medium tracking-wider uppercase text-mute mb-1">{t('extra.eyebrow')}</p>
+        <h3 class="text-ink font-semibold text-lg tracking-tight">{t('extra.heading')}</h3>
+        <p class="text-sm text-body mt-1">{t('extra.sub')}</p>
       </div>
 
       <div class="grid sm:grid-cols-[1fr_1fr] gap-6">
@@ -16,7 +23,7 @@
         <div class="space-y-4">
           <div>
             <label for="extra-monthly" class="text-sm font-medium text-ink block mb-2">
-              Extra Monthly Payment
+              {t('extra.label')}
             </label>
             <div class="relative">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 text-mute text-sm">$</span>
@@ -29,7 +36,7 @@
                 placeholder="0"
               />
             </div>
-            <p class="text-xs text-faint mt-1.5">Enter any amount above $0 to see savings</p>
+            <p class="text-xs text-faint mt-1.5">{t('extra.hint')}</p>
           </div>
 
           <!-- Quick amount buttons -->
@@ -49,20 +56,20 @@
                 <path d="M8 1C4.134 1 1 4.134 1 8s3.134 7 7 7 7-3.134 7-7-3.134-7-7-7zm0 12.5A5.507 5.507 0 012.5 8 5.507 5.507 0 018 2.5 5.507 5.507 0 0113.5 8 5.507 5.507 0 018 13.5z" fill="currentColor"/>
                 <path d="M11.354 5.646a.5.5 0 010 .708l-4 4a.5.5 0 01-.708 0l-2-2a.5.5 0 01.708-.708L7 9.293l3.646-3.647a.5.5 0 01.708 0z" fill="currentColor"/>
               </svg>
-              <span class="text-sm font-medium text-ink">Your Savings</span>
+              <span class="text-sm font-medium text-ink">{calc.savings}</span>
             </div>
 
             <div class="space-y-3">
               <div class="flex items-center justify-between">
-                <span class="text-sm text-body">Time Saved</span>
+                <span class="text-sm text-body">{calc.timeSaved}</span>
                 <span class="text-sm font-semibold text-ink tabular-nums" id="extra-months-saved">—</span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-body">Interest Saved</span>
+                <span class="text-sm text-body">{calc.interestSaved}</span>
                 <span class="text-sm font-semibold text-ink tabular-nums" id="extra-interest-saved">—</span>
               </div>
               <div class="flex items-center justify-between">
-                <span class="text-sm text-body">New Payoff Date</span>
+                <span class="text-sm text-body">{calc.newPayoff}</span>
                 <span class="text-sm font-semibold text-ink" id="extra-new-payoff">—</span>
               </div>
             </div>
@@ -74,13 +81,14 @@
 </section>
 
 <script>
+  const locale = document.documentElement.lang || 'en';
   // Quick amount buttons
   document.querySelectorAll('.extra-quick-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const amount = parseInt((btn as HTMLElement).dataset.amount || '0');
       const input = document.getElementById('extra-monthly') as HTMLInputElement;
       if (input) {
-        input.value = amount.toLocaleString('en-US');
+        input.value = amount.toLocaleString(locale);
         input.dispatchEvent(new Event('input', { bubbles: true }));
       }
     });
