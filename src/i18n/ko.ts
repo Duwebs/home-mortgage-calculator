@@ -19,7 +19,7 @@ const ko: Translation = {
   },
   footer: {
     tagline: '현대적이고 프라이빗한 즉시 대출 상환 시뮬레이터. 대출 기간, 재산세, PMI, 상환 스케줄을 쉽게 분석하세요.',
-    noTracking: '데이터 추적 없음 • 브라우저에서만 실행',
+    noTracking: '브라우저에서 계산 • 익명 분석',
     calculators: '계산 도구',
     toolLinks: [
       { label: '월 상환액 계산', href: '#calculator' },

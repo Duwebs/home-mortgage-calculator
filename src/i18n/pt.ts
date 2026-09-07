@@ -19,7 +19,7 @@ const pt: Translation = {
   },
   footer: {
     tagline: 'Um estimador de pagamentos de hipoteca moderno, privado e instantâneo. Analise prazos, impostos, PMI e amortização sem esforço.',
-    noTracking: 'Sem Rastreamento • Somente no Navegador',
+    noTracking: 'Somente no navegador • Análises anônimas',
     calculators: 'Calculadoras',
     toolLinks: [
       { label: 'Calculadora de Pagamento Mensal', href: '#calculator' },

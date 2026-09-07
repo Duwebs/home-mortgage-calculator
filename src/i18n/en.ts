@@ -21,7 +21,7 @@ const en: Translation = {
   },
   footer: {
     tagline: 'A modern, private, and instant mortgage payment estimator. Break down loan terms, taxes, PMI, and amortization effortlessly.',
-    noTracking: 'No Data Tracking • Browser-Only',
+    noTracking: 'Browser-Only Calculator • Anonymous Analytics',
     calculators: 'Calculators',
     toolLinks: [
       { label: 'Monthly Payment Calculator', href: '#calculator' },

@@ -19,7 +19,7 @@ const ja: Translation = {
   },
   footer: {
     tagline: 'モダンでプライベート、即時の住宅ローン返済シミュレーター。返済期間・固定資産税・PMI・償還表を簡単に分析できます。',
-    noTracking: 'データ収集なし • ブラウザ内で完結',
+    noTracking: 'ブラウザ内で計算 • 匿名のアクセス解析',
     calculators: '計算ツール',
     toolLinks: [
       { label: '毎月返済額計算', href: '#calculator' },

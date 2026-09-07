@@ -19,7 +19,7 @@ const fr: Translation = {
   },
   footer: {
     tagline: 'Un estimateur de mensualités immobilières moderne, privé et instantané. Analysez durées, taxes foncières, PMI et amortissements sans effort.',
-    noTracking: 'Aucun Pistage • Côté Client Uniquement',
+    noTracking: 'Calcul dans le navigateur • Statistiques anonymes',
     calculators: 'Calculateurs',
     toolLinks: [
       { label: 'Calcul de Mensualité', href: '#calculator' },

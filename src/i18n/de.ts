@@ -19,7 +19,7 @@ const de: Translation = {
   },
   footer: {
     tagline: 'Ein moderner, privater und sofortiger Darlehensrechner. Analysiere Laufzeiten, Grundsteuer, PMI und Tilgungspläne mühelos.',
-    noTracking: 'Kein Daten-Tracking • Nur im Browser',
+    noTracking: 'Nur im Browser berechnet • Anonyme Analyse',
     calculators: 'Rechner',
     toolLinks: [
       { label: 'Monatsraten-Rechner', href: '#calculator' },

@@ -19,7 +19,7 @@ const it: Translation = {
   },
   footer: {
     tagline: 'Uno strumento moderno, privato e immediato per stimare la rata del mutuo. Analizza durate, imposte, PMI e piani di ammortamento senza sforzo.',
-    noTracking: 'Nessun Tracciamento • Solo nel Browser',
+    noTracking: 'Solo nel browser • Analytics anonimi',
     calculators: 'Calcolatori',
     toolLinks: [
       { label: 'Calcolo Rata Mensile', href: '#calculator' },
