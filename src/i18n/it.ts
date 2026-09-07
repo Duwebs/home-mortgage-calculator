@@ -155,14 +155,14 @@ const it: Translation = {
   about: {
     h1: 'Chi Siamo',
     lead: 'Comprare casa è una delle più grandi decisioni finanziarie — ma i numeri di un mutuo possono sembrare opachi. La nostra missione: rendere quella matematica semplice, trasparente e gratuita.',
-    p2: 'Home Mortgage Calculator è uno stimatore di rate gratuito, privato e immediato. In pochi secondi ottieni un dettaglio preciso in tempo reale.',
-    p3: 'Abbiamo creato questo strumento perché tutti dovrebbero capire quanto costa davvero una casa. Per questo includiamo capitale e interessi, imposte, assicurazione, PMI e condominio.',
+    p1: 'Home Mortgage Calculator è uno stimatore di rate gratuito, privato e immediato. In pochi secondi ottieni un dettaglio preciso in tempo reale.',
+    p2: 'Abbiamo creato questo strumento perché tutti dovrebbero capire quanto costa davvero una casa. Per questo includiamo capitale e interessi, imposte, assicurazione, PMI e condominio.',
     cards: [
       { h: '100% Gratuito', p: 'Nessuna registrazione, nessun paywall, nessun costo nascosto.' },
       { h: 'Privato per Progettazione', p: 'Tutto gira nel tuo browser. Non salviamo mai i tuoi numeri.' },
       { h: 'Stime Realistiche', p: 'Includiamo imposte, assicurazione, PMI e condominio.' },
     ],
-    what: {
+    whatWeDo: {
       h: 'Cosa Facciamo',
       p1: 'Il nostro strumento stima le rate mensili e genera un piano di ammortamento completo.',
       p2: 'Nessun account, nessuna raccolta dati, nessun gergo. Solo numeri chiari.',
@@ -170,10 +170,10 @@ const it: Translation = {
     values: {
       h: 'I Nostri Valori',
       items: [
-        { b: 'Chiarezza —', t: 'Gli strumenti finanziari devono essere facili da capire.' },
-        { b: 'Privacy —', t: 'I tuoi dati finanziari restano sempre sul tuo dispositivo.' },
-        { b: 'Accessibilità —', t: 'La matematica del mutuo deve essere gratuita per tutti.' },
-        { b: 'Precisione —', t: 'Puntiamo a stime il più realistiche possibile.' },
+        '<strong>Chiarezza —</strong> Gli strumenti finanziari devono essere facili da capire.',
+        '<strong>Privacy —</strong> I tuoi dati finanziari restano sempre sul tuo dispositivo.',
+        '<strong>Accessibilità —</strong> La matematica del mutuo deve essere gratuita per tutti.',
+        '<strong>Precisione —</strong> Puntiamo a stime il più realistiche possibile.',
       ],
     },
     note: {
@@ -183,21 +183,20 @@ const it: Translation = {
     touch: {
       h: 'Contattaci',
       p: 'Domande o feedback? Visita la nostra',
-      link: 'pagina dei contatti',
-      pEnd: 'e ti risponderemo al più presto.',
+      linkText: 'pagina dei contatti',
     },
   },
   contact: {
     h1: 'Contatti',
     intro: 'Una domanda, un suggerimento o un feedback? Compila il modulo e risponderemo entro due giorni lavorativi.',
-    form: {
-      name: 'Nome', namePh: 'Il tuo nome', email: 'E-mail', emailPh: 'tu@esempio.com',
-      subject: 'Oggetto', subjectPh: 'Come possiamo aiutarti?', message: 'Messaggio', messagePh: 'Scrivi qui il tuo messaggio...',
-      send: 'Invia Messaggio',
-      note: 'L\u2019invio apre la tua app e-mail con il messaggio precompilato. Non salviamo mai il contenuto.',
-    },
-    emailUs: { h: 'Scrivici', p: 'Preferisci scrivere direttamente? Scrivici a' },
-    faqCard: { h: 'FAQ', p: 'Molte risposte sono nella home. Consulta le', link: 'domande frequenti', pEnd: ' prima di scriverci.' },
+    nameLabel: 'Nome', namePh: 'Il tuo nome',
+    emailLabel: 'E-mail', emailPh: 'tu@esempio.com',
+    subjectLabel: 'Oggetto', subjectPh: 'Come possiamo aiutarti?',
+    messageLabel: 'Messaggio', messagePh: 'Scrivi qui il tuo messaggio...',
+    sendBtn: 'Invia Messaggio',
+    formNote: 'L\u2019invio apre la tua app e-mail con il messaggio precompilato. Non salviamo mai il contenuto.',
+    emailCard: { h: 'Scrivici', p: 'Preferisci scrivere direttamente? Scrivici a' },
+    faqCard: { h: 'FAQ', p: 'Molte risposte sono nella home. Consulta le', linkText: 'domande frequenti' },
   },
   privacy: {
     h1: 'Informativa Privacy',

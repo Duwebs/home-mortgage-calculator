@@ -18,62 +18,15 @@ const tc = t('terms');
       <div class="container-main max-w-3xl">
         <h1 class="text-ink font-semibold text-3xl sm:text-4xl tracking-tight mb-2">{tc.h1}</h1>
         <p class="text-sm text-mute mb-10">{tc.updated}</p>
+
         <div class="space-y-8 text-body text-base leading-relaxed">
-          <p>{tc.intro}</p>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.service.h}</h2>
-            <p>{tc.service.p}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.noAdvice.h}</h2>
-            <p>{tc.noAdvice.p1}</p>
-            <p class="mt-4">{tc.noAdvice.p2}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.accept.h}</h2>
-            <p>{tc.accept.p}</p>
-            <ul class="list-disc pl-5 space-y-2 mt-4">
-              {tc.accept.items.map((item) => (<li>{item}</li>))}
-            </ul>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.ip.h}</h2>
-            <p>{tc.ip.p}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.warranty.h}</h2>
-            <p>{tc.warranty.p}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.liability.h}</h2>
-            <p>{tc.liability.p}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.thirdParty.h}</h2>
-            <p>{tc.thirdParty.p}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.changes.h}</h2>
-            <p>{tc.changes.p}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.governing.h}</h2>
-            <p>{tc.governing.p}</p>
-          </section>
-
-          <section>
-            <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{tc.contact.h}</h2>
-            <p>{tc.contact.p} <a href={tp('/contact-us')} class="text-link underline underline-offset-2 decoration-link/40 hover:decoration-link">{tc.contact.linkText}</a>.</p>
-          </section>
+          <p>{tc.lead}</p>
+          {tc.sections.map((section) => (
+            <section>
+              <h2 class="text-ink font-semibold text-xl tracking-tight mb-3">{section.h}</h2>
+              <div set:html={section.html} />
+            </section>
+          ))}
         </div>
       </div>
     </section>

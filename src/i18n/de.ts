@@ -155,14 +155,14 @@ const de: Translation = {
   about: {
     h1: 'Über Uns',
     lead: 'Ein Haus zu kaufen ist eine der größten Finanzentscheidungen – doch Kreditzahlen wirken oft undurchsichtig. Unsere Mission: diese Mathematik einfach, transparent und kostenlos machen.',
-    p2: 'Home Mortgage Calculator ist ein kostenloser, privater und sofortiger Ratenrechner. In Sekunden erhältst du eine präzise Echtzeit-Aufschlüsselung deiner Monatskosten.',
-    p3: 'Wir haben dieses Tool gebaut, weil jeder verstehen sollte, was ein Haus wirklich kostet. Deshalb rechnen wir auch Steuern, Versicherung, PMI und Hausgeld ein.',
+    p1: 'Home Mortgage Calculator ist ein kostenloser, privater und sofortiger Ratenrechner. In Sekunden erhältst du eine präzise Echtzeit-Aufschlüsselung deiner Monatskosten.',
+    p2: 'Wir haben dieses Tool gebaut, weil jeder verstehen sollte, was ein Haus wirklich kostet. Deshalb rechnen wir auch Steuern, Versicherung, PMI und Hausgeld ein.',
     cards: [
       { h: '100% Kostenlos', p: 'Keine Anmeldung, keine Paywall, keine versteckten Kosten.' },
       { h: 'Privat von Anfang an', p: 'Alles läuft im Browser. Wir speichern deine Zahlen nie.' },
       { h: 'Realistische Schätzungen', p: 'Inklusive Steuern, Versicherung, PMI und Hausgeld.' },
     ],
-    what: {
+    whatWeDo: {
       h: 'Was Wir Tun',
       p1: 'Unser Tool schätzt Monatsraten und erstellt vollständige Tilgungspläne – so siehst du, wie viel Zinsen du sparen kannst.',
       p2: 'Keine Konten, keine Datensammlung, kein Fachjargon. Nur klare Zahlen für sichere Entscheidungen.',
@@ -170,10 +170,10 @@ const de: Translation = {
     values: {
       h: 'Unsere Werte',
       items: [
-        { b: 'Klarheit —', t: 'Finanztools müssen leicht verständlich sein.' },
-        { b: 'Privatsphäre —', t: 'Deine Finanzdaten bleiben immer auf deinem Gerät.' },
-        { b: 'Zugänglichkeit —', t: 'Kreditmathematik sollte für alle kostenlos sein.' },
-        { b: 'Genauigkeit —', t: 'Wir arbeiten an möglichst realistischen Schätzungen.' },
+        '<strong>Klarheit —</strong> Finanztools müssen leicht verständlich sein.',
+        '<strong>Privatsphäre —</strong> Deine Finanzdaten bleiben immer auf deinem Gerät.',
+        '<strong>Zugänglichkeit —</strong> Kreditmathematik sollte für alle kostenlos sein.',
+        '<strong>Genauigkeit —</strong> Wir arbeiten an möglichst realistischen Schätzungen.',
       ],
     },
     note: {
@@ -183,21 +183,20 @@ const de: Translation = {
     touch: {
       h: 'Kontakt',
       p: 'Fragen oder Feedback? Besuche unsere',
-      link: 'Kontaktseite',
-      pEnd: 'und wir melden uns so schnell wie möglich.',
+      linkText: 'Kontaktseite',
     },
   },
   contact: {
     h1: 'Kontakt',
     intro: 'Frage, Vorschlag oder Feedback? Fülle das Formular aus und wir antworten innerhalb von zwei Werktagen.',
-    form: {
-      name: 'Name', namePh: 'Dein Name', email: 'E-Mail', emailPh: 'du@beispiel.de',
-      subject: 'Betreff', subjectPh: 'Wie können wir helfen?', message: 'Nachricht', messagePh: 'Schreibe deine Nachricht hier...',
-      send: 'Nachricht Senden',
-      note: 'Das Absenden öffnet dein E-Mail-Programm mit vorausgefüllter Nachricht. Wir speichern den Inhalt nie.',
-    },
-    emailUs: { h: 'E-Mail', p: 'Lieber direkt schreiben? Erreichbar unter' },
-    faqCard: { h: 'FAQ', p: 'Viele Antworten findest du auf der Startseite. Sieh dir die', link: 'häufigen Fragen', pEnd: 'an, bevor du schreibst.' },
+    nameLabel: 'Name', namePh: 'Dein Name',
+    emailLabel: 'E-Mail', emailPh: 'du@beispiel.de',
+    subjectLabel: 'Betreff', subjectPh: 'Wie können wir helfen?',
+    messageLabel: 'Nachricht', messagePh: 'Schreibe deine Nachricht hier...',
+    sendBtn: 'Nachricht Senden',
+    formNote: 'Das Absenden öffnet dein E-Mail-Programm mit vorausgefüllter Nachricht. Wir speichern den Inhalt nie.',
+    emailCard: { h: 'E-Mail', p: 'Lieber direkt schreiben? Erreichbar unter' },
+    faqCard: { h: 'FAQ', p: 'Viele Antworten findest du auf der Startseite. Sieh dir die', linkText: 'häufigen Fragen an' },
   },
   privacy: {
     h1: 'Datenschutzerklärung',

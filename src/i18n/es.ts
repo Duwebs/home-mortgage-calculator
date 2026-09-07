@@ -155,14 +155,14 @@ const es: Translation = {
   about: {
     h1: 'Sobre Nosotros',
     lead: 'Comprar una vivienda es una de las mayores decisiones financieras — pero las cifras de una hipoteca pueden resultar opacas. Nuestra misión es hacer esa matemática simple, transparente y gratuita.',
-    p2: 'Home Mortgage Calculator es un estimador de pagos hipotecarios gratuito, privado e instantáneo. Obtén un desglose preciso y en tiempo real de tus costos mensuales en segundos.',
-    p3: 'Creamos esta herramienta porque creemos que todos deberían entender lo que realmente cuesta una vivienda antes de comprometerse. Por eso incluimos capital e intereses, impuestos, seguro, PMI y cuotas de HOA.',
+    p1: 'Home Mortgage Calculator es un estimador de pagos hipotecarios gratuito, privado e instantáneo. Obtén un desglose preciso y en tiempo real de tus costos mensuales en segundos.',
+    p2: 'Creamos esta herramienta porque creemos que todos deberían entender lo que realmente cuesta una vivienda antes de comprometerse. Por eso incluimos capital e intereses, impuestos, seguro, PMI y cuotas de HOA.',
     cards: [
       { h: '100% Gratis', p: 'Sin registro, sin muros de pago, sin costos ocultos. Gratis para siempre.' },
       { h: 'Privado por Diseño', p: 'Todo se ejecuta en tu navegador. Nunca almacenamos ni transmitimos tus datos.' },
       { h: 'Estimaciones Realistas', p: 'Incluimos impuestos, seguro, PMI y HOA para reflejar los costos reales.' },
     ],
-    what: {
+    whatWeDo: {
       h: 'Qué Hacemos',
       p1: 'Nuestra herramienta estima pagos hipotecarios y genera una tabla de amortización completa, ayudándote a ver cuántos intereses puedes ahorrar.',
       p2: 'Sin cuentas, sin recolección de datos y sin jerga financiera confusa. Solo números claros para decidir con confianza.',
@@ -170,10 +170,10 @@ const es: Translation = {
     values: {
       h: 'Nuestros Valores',
       items: [
-        { b: 'Claridad —', t: 'Las herramientas financieras deben ser fáciles de entender.' },
-        { b: 'Privacidad —', t: 'Tus datos financieros permanecen en tu dispositivo, siempre.' },
-        { b: 'Accesibilidad —', t: 'La matemática hipotecaria debe ser gratuita para todos.' },
-        { b: 'Precisión —', t: 'Trabajamos para que nuestras estimaciones sean realistas.' },
+        '<strong>Claridad —</strong> Las herramientas financieras deben ser fáciles de entender.',
+        '<strong>Privacidad —</strong> Tus datos financieros permanecen en tu dispositivo, siempre.',
+        '<strong>Accesibilidad —</strong> La matemática hipotecaria debe ser gratuita para todos.',
+        '<strong>Precisión —</strong> Trabajamos para que nuestras estimaciones sean realistas.',
       ],
     },
     note: {
@@ -183,21 +183,20 @@ const es: Translation = {
     touch: {
       h: 'Contacta Con Nosotros',
       p: '¿Tienes alguna pregunta o comentario? Visita nuestra',
-      link: 'página de contacto',
-      pEnd: 'y te responderemos lo antes posible.',
+      linkText: 'página de contacto',
     },
   },
   contact: {
     h1: 'Contacto',
     intro: '¿Tienes una pregunta sobre nuestra calculadora, quieres sugerir una función o darnos tu opinión? Rellena el formulario y te responderemos en dos días laborables.',
-    form: {
-      name: 'Nombre', namePh: 'Tu nombre', email: 'Correo', emailPh: 'tu@ejemplo.com',
-      subject: 'Asunto', subjectPh: '¿Cómo podemos ayudarte?', message: 'Mensaje', messagePh: 'Escribe tu mensaje aquí...',
-      send: 'Enviar Mensaje',
-      note: 'Al enviar el formulario se abrirá tu aplicación de correo con el mensaje ya redactado. Nunca almacenamos el contenido en nuestros servidores.',
-    },
-    emailUs: { h: 'Escríbenos', p: '¿Prefieres escribir directamente? Escríbenos a' },
-    faqCard: { h: 'FAQ', p: 'Muchas preguntas están respondidas en nuestra página principal. Consulta las', link: 'preguntas frecuentes', pEnd: 'antes de escribirnos.' },
+    nameLabel: 'Nombre', namePh: 'Tu nombre',
+    emailLabel: 'Correo', emailPh: 'tu@ejemplo.com',
+    subjectLabel: 'Asunto', subjectPh: '¿Cómo podemos ayudarte?',
+    messageLabel: 'Mensaje', messagePh: 'Escribe tu mensaje aquí...',
+    sendBtn: 'Enviar Mensaje',
+    formNote: 'Al enviar el formulario se abrirá tu aplicación de correo con el mensaje ya redactado. Nunca almacenamos el contenido en nuestros servidores.',
+    emailCard: { h: 'Escríbenos', p: '¿Prefieres escribir directamente? Escríbenos a' },
+    faqCard: { h: 'FAQ', p: 'Muchas preguntas están respondidas en nuestra página principal. Consulta las', linkText: 'preguntas frecuentes' },
   },
   privacy: {
     h1: 'Política de Privacidad',

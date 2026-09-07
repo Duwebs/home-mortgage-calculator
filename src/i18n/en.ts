@@ -1,4 +1,4 @@
-import type { Translation } from './ui';
+﻿import type { Translation } from './ui';
 
 // English source of truth
 const en: Translation = {
@@ -70,6 +70,7 @@ const en: Translation = {
     savings: 'Savings with Extra Payments', timeSaved: 'Time Saved',
     interestSaved: 'Interest Saved', newPayoff: 'New Payoff Date',
     enterExtra: 'Enter Extra Payment',
+  },
   education: {
     eyebrow: 'Learn', heading: 'Mortgage Education',
     sub: 'Everything you need to know about mortgages, from basics to advanced strategies.',
@@ -82,9 +83,10 @@ const en: Translation = {
     ],
   },
   cta: {
-    h2: 'Start Planning Your Mortgage Today',
-    p: 'Get a clear, private estimate in seconds — no sign-up, no data collection, no spam.',
-    btn: 'Calculate Now',
+    eyebrow: 'Get Started Today',
+    heading: 'Ready to Find Your Perfect Mortgage?',
+    sub: 'Try the calculator with different scenarios. Adjust the loan term, compare rates, and find the payment that fits your budget.',
+    button: 'Calculate Now',
   },
   seo: {
     h2: 'Frequently Asked Questions About Mortgages',
@@ -112,37 +114,49 @@ const en: Translation = {
   },
   about: {
     h1: 'About Us',
-    intro: 'Home Mortgage Calculator is a free, private, and instant mortgage payment estimator that runs entirely in your browser.',
-    mission: {
-      h: 'Our Mission',
-      p: 'Our mission is to make mortgage math simple and transparent. We believe everyone deserves access to accurate mortgage calculations without sacrificing privacy.',
+    lead: 'Buying a home is one of the biggest financial decisions you will ever make — yet mortgage math often feels opaque. Our mission is to make it simple, transparent, and free.',
+    p1: 'Home Mortgage Calculator is a free, private, and instant mortgage payment estimator. In seconds you get an accurate, real-time breakdown of your monthly costs — principal and interest, taxes, insurance, PMI, and HOA fees.',
+    p2: 'We built this tool because everyone should understand what a home really costs. That is why we include taxes, insurance, PMI, and association fees alongside the loan itself.',
+    cards: [
+      { h: '100% Free', p: 'No sign-up, no paywall, no hidden fees. Free forever.' },
+      { h: 'Private by Design', p: 'Everything runs in your browser. We never store or transmit your numbers.' },
+      { h: 'Realistic Estimates', p: 'We include taxes, insurance, PMI, and HOA fees to reflect true costs.' },
+    ],
+    whatWeDo: {
+      h: 'What We Do',
+      p1: 'Our tool estimates monthly payments and generates a complete amortization schedule, helping you see how much interest you can save.',
+      p2: 'No accounts, no data collection, no confusing jargon. Just clear numbers to decide with confidence.',
     },
     values: {
       h: 'Our Values',
       items: [
-        { h: 'Privacy First', p: 'Your financial data never leaves your browser. We don\'t collect, store, or transmit any personal information.' },
-        { h: 'Free Forever', p: 'Our calculator is completely free to use. No hidden fees, no premium features, no sign-ups required.' },
-        { h: 'Accurate & Transparent', p: 'We use standard mortgage formulas and clearly show how your payment is calculated.' },
+        '<strong>Clarity —</strong> Financial tools should be easy to understand.',
+        '<strong>Privacy —</strong> Your financial data always stays on your device.',
+        '<strong>Accessibility —</strong> Mortgage math should be free for everyone.',
+        '<strong>Accuracy —</strong> We work toward the most realistic estimates possible.',
       ],
     },
-    contact: {
+    note: {
+      h: 'A Note About Our Estimates',
+      p: 'Our calculator provides estimates for planning and educational purposes. Actual rates, taxes, insurance, and terms vary by lender and location. Always verify final figures with a professional.',
+    },
+    touch: {
       h: 'Get in Touch',
-      p: 'Have questions or feedback? We\'d love to hear from you. Reach out through our contact page.',
+      p: 'Have a question or feedback? Visit our',
+      linkText: 'contact page',
     },
   },
   contact: {
     h1: 'Contact Us',
     intro: 'Have a question about our calculator, want to suggest a feature, or share feedback? Fill out the form below and we\'ll get back to you within 2 business days.',
-    form: {
-      name: 'Name', namePh: 'Your name',
-      email: 'Email', emailPh: 'you@example.com',
-      subject: 'Subject', subjectPh: 'How can we help?',
-      message: 'Message', messagePh: 'Write your message here...',
-      send: 'Send Message',
-      note: 'Submitting this form will open your email client with a pre-filled message. We never store the content on our servers.',
-    },
-    emailUs: { h: 'Email Us', p: 'Prefer to email directly? Reach us at' },
-    faqCard: { h: 'FAQ', p: 'Many questions are answered on our homepage. Check the', link: 'frequently asked questions', pEnd: 'before reaching out.' },
+    nameLabel: 'Name', namePh: 'Your name',
+    emailLabel: 'Email', emailPh: 'you@example.com',
+    subjectLabel: 'Subject', subjectPh: 'How can we help?',
+    messageLabel: 'Message', messagePh: 'Write your message here...',
+    sendBtn: 'Send Message',
+    formNote: 'Submitting this form will open your email client with a pre-filled message. We never store the content on our servers.',
+    emailCard: { h: 'Email Us', p: 'Prefer to email directly? Reach us at' },
+    faqCard: { h: 'FAQ', p: 'Many questions are answered on our homepage. Check the', linkText: 'frequently asked questions' },
   },
   privacy: {
     h1: 'Privacy Policy',

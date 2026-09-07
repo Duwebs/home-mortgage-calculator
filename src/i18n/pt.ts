@@ -155,14 +155,14 @@ const pt: Translation = {
   about: {
     h1: 'Sobre Nós',
     lead: 'Comprar um imóvel é uma das maiores decisões financeiras — mas os números da hipoteca podem parecer opacos. Nossa missão é tornar essa matemática simples, transparente e gratuita.',
-    p2: 'Home Mortgage Calculator é um estimador de pagamentos gratuito, privado e instantâneo. Em segundos você obtém um detalhamento preciso em tempo real.',
-    p3: 'Criamos esta ferramenta porque todos deveriam entender o que uma casa realmente custa. Por isso incluímos principal e juros, impostos, seguro, PMI e condomínio.',
+    p1: 'Home Mortgage Calculator é um estimador de pagamentos gratuito, privado e instantâneo. Em segundos você obtém um detalhamento preciso em tempo real.',
+    p2: 'Criamos esta ferramenta porque todos deveriam entender o que uma casa realmente custa. Por isso incluímos principal e juros, impostos, seguro, PMI e condomínio.',
     cards: [
       { h: '100% Grátis', p: 'Sem cadastro, sem paywall, sem custos ocultos.' },
       { h: 'Privado por Design', p: 'Tudo roda no seu navegador. Nunca armazenamos seus números.' },
       { h: 'Estimativas Realistas', p: 'Incluímos impostos, seguro, PMI e condomínio.' },
     ],
-    what: {
+    whatWeDo: {
       h: 'O Que Fazemos',
       p1: 'Nossa ferramenta estima pagamentos mensais e gera uma tabela de amortização completa.',
       p2: 'Sem contas, sem coleta de dados, sem jargão. Apenas números claros.',
@@ -170,10 +170,10 @@ const pt: Translation = {
     values: {
       h: 'Nossos Valores',
       items: [
-        { b: 'Clareza —', t: 'Ferramentas financeiras devem ser fáceis de entender.' },
-        { b: 'Privacidade —', t: 'Seus dados ficam sempre no seu dispositivo.' },
-        { b: 'Acessibilidade —', t: 'A matemática da hipoteca deve ser gratuita para todos.' },
-        { b: 'Precisão —', t: 'Buscamos estimativas o mais realistas possível.' },
+        '<strong>Clareza —</strong> Ferramentas financeiras devem ser fáceis de entender.',
+        '<strong>Privacidade —</strong> Seus dados ficam sempre no seu dispositivo.',
+        '<strong>Acessibilidade —</strong> A matemática da hipoteca deve ser gratuita para todos.',
+        '<strong>Precisão —</strong> Buscamos estimativas o mais realistas possível.',
       ],
     },
     note: {
@@ -183,21 +183,20 @@ const pt: Translation = {
     touch: {
       h: 'Fale Conosco',
       p: 'Dúvidas ou feedback? Visite nossa',
-      link: 'página de contato',
-      pEnd: 'e responderemos o quanto antes.',
+      linkText: 'página de contato',
     },
   },
   contact: {
     h1: 'Contato',
     intro: 'Dúvida, sugestão ou feedback? Preencha o formulário e responderemos em até dois dias úteis.',
-    form: {
-      name: 'Nome', namePh: 'Seu nome', email: 'E-mail', emailPh: 'voce@exemplo.com',
-      subject: 'Assunto', subjectPh: 'Como podemos ajudar?', message: 'Mensagem', messagePh: 'Escreva sua mensagem aqui...',
-      send: 'Enviar Mensagem',
-      note: 'O envio abre seu aplicativo de e-mail com a mensagem preenchida. Nunca armazenamos o conteúdo.',
-    },
-    emailUs: { h: 'E-mail', p: 'Prefere escrever diretamente? Fale conosco em' },
-    faqCard: { h: 'FAQ', p: 'Muitas respostas estão na nossa página inicial. Veja as', link: 'perguntas frequentes', pEnd: 'antes de nos escrever.' },
+    nameLabel: 'Nome', namePh: 'Seu nome',
+    emailLabel: 'E-mail', emailPh: 'voce@exemplo.com',
+    subjectLabel: 'Assunto', subjectPh: 'Como podemos ajudar?',
+    messageLabel: 'Mensagem', messagePh: 'Escreva sua mensagem aqui...',
+    sendBtn: 'Enviar Mensagem',
+    formNote: 'O envio abre seu aplicativo de e-mail com a mensagem preenchida. Nunca armazenamos o conteúdo.',
+    emailCard: { h: 'E-mail', p: 'Prefere escrever diretamente? Fale conosco em' },
+    faqCard: { h: 'FAQ', p: 'Muitas respostas estão na nossa página inicial. Veja as', linkText: 'perguntas frequentes' },
   },
   privacy: {
     h1: 'Política de Privacidade',

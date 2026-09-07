@@ -155,14 +155,14 @@ const fr: Translation = {
   about: {
     h1: 'À Propos',
     lead: 'Acheter un logement est l\u2019une des plus grandes décisions financières — mais les chiffres d\u2019un prêt peuvent sembler opaques. Notre mission : rendre ce calcul simple, transparent et gratuit.',
-    p2: 'Home Mortgage Calculator est un estimateur de mensualités gratuit, privé et instantané. Obtenez un détail précis en temps réel en quelques secondes.',
-    p3: 'Nous avons créé cet outil parce que tout le monde devrait comprendre ce que coûte réellement une maison. C\u2019est pourquoi nous incluons capital et intérêts, taxes, assurance, PMI et frais de copropriété.',
+    p1: 'Home Mortgage Calculator est un estimateur de mensualités gratuit, privé et instantané. Obtenez un détail précis en temps réel en quelques secondes.',
+    p2: 'Nous avons créé cet outil parce que tout le monde devrait comprendre ce que coûte réellement une maison. C\u2019est pourquoi nous incluons capital et intérêts, taxes, assurance, PMI et frais de copropriété.',
     cards: [
       { h: '100% Gratuit', p: 'Sans inscription, sans paywall, sans frais cachés. Gratuit pour toujours.' },
       { h: 'Privé par Conception', p: 'Tout s\u2019exécute dans votre navigateur. Nous ne stockons ni ne transmettons vos données.' },
       { h: 'Estimations Réalistes', p: 'Nous incluons taxes, assurance, PMI et copropriété pour refléter les coûts réels.' },
     ],
-    what: {
+    whatWeDo: {
       h: 'Ce Que Nous Faisons',
       p1: 'Notre outil estime les mensualités et génère un tableau d\u2019amortissement complet, pour voir combien d\u2019intérêts vous pouvez économiser.',
       p2: 'Pas de compte, pas de collecte de données, pas de jargon. Juste des chiffres clairs pour décider en confiance.',
@@ -170,10 +170,10 @@ const fr: Translation = {
     values: {
       h: 'Nos Valeurs',
       items: [
-        { b: 'Clarté —', t: 'Les outils financiers doivent être faciles à comprendre.' },
-        { b: 'Confidentialité —', t: 'Vos données restent sur votre appareil, toujours.' },
-        { b: 'Accessibilité —', t: 'Le calcul immobilier doit être gratuit pour tous.' },
-        { b: 'Précision —', t: 'Nous visons des estimations aussi réalistes que possible.' },
+        '<strong>Clarté —</strong> Les outils financiers doivent être faciles à comprendre.',
+        '<strong>Confidentialité —</strong> Vos données restent sur votre appareil, toujours.',
+        '<strong>Accessibilité —</strong> Le calcul immobilier doit être gratuit pour tous.',
+        '<strong>Précision —</strong> Nous visons des estimations aussi réalistes que possible.',
       ],
     },
     note: {
@@ -183,21 +183,20 @@ const fr: Translation = {
     touch: {
       h: 'Nous Contacter',
       p: 'Une question ou un commentaire ? Visitez notre',
-      link: 'page de contact',
-      pEnd: 'et nous vous répondrons dès que possible.',
+      linkText: 'page de contact',
     },
   },
   contact: {
     h1: 'Contact',
     intro: 'Une question, une suggestion ou un retour d\u2019expérience ? Remplissez le formulaire et nous répondrons sous deux jours ouvrés.',
-    form: {
-      name: 'Nom', namePh: 'Votre nom', email: 'E-mail', emailPh: 'vous@exemple.com',
-      subject: 'Objet', subjectPh: 'Comment pouvons-nous aider ?', message: 'Message', messagePh: 'Écrivez votre message ici...',
-      send: 'Envoyer',
-      note: 'L\u2019envoi ouvre votre application e-mail avec le message pré-rempli. Nous ne stockons jamais ce contenu sur nos serveurs.',
-    },
-    emailUs: { h: 'Écrivez-nous', p: 'Préférez-vous écrire directement ? Contactez-nous à' },
-    faqCard: { h: 'FAQ', p: 'De nombreuses questions sont traitées sur notre page d\u2019accueil. Consultez les', link: 'questions fréquentes', pEnd: 'avant de nous écrire.' },
+    nameLabel: 'Nom', namePh: 'Votre nom',
+    emailLabel: 'E-mail', emailPh: 'vous@exemple.com',
+    subjectLabel: 'Objet', subjectPh: 'Comment pouvons-nous aider ?',
+    messageLabel: 'Message', messagePh: 'Écrivez votre message ici...',
+    sendBtn: 'Envoyer',
+    formNote: 'L\u2019envoi ouvre votre application e-mail avec le message pré-rempli. Nous ne stockons jamais ce contenu sur nos serveurs.',
+    emailCard: { h: 'Écrivez-nous', p: 'Préférez-vous écrire directement ? Contactez-nous à' },
+    faqCard: { h: 'FAQ', p: 'De nombreuses questions sont traitées sur notre page d\u2019accueil. Consultez les', linkText: 'questions fréquentes' },
   },
   privacy: {
     h1: 'Politique de Confidentialité',
