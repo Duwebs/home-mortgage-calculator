@@ -6,7 +6,7 @@ import { join, relative, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // https://astro.build/config
-const SITE = 'https://homemortgagecalculator.vercel.app';
+const SITE = 'https://home-mortgage-calculator.vercel.app';
 
 // Generates a rooted sitemap.xml and robots.txt from the built HTML output.
 // Error pages (404/500) are emitted with `noindex` by Layout and are excluded.
